@@ -14,3 +14,10 @@ Este repositório conserva materiais de apoio e histórico de projetos. Ele não
 O jogo atual se chama **Prancheta**. Página pública: https://reboclbrank-max.github.io/site/prancheta/baixar.html. A fonte e o APK assinado ficam no repositório privado `base`; não publique keystores neste arquivo.
 
 Builds e pastas de versões substituídas foram retiradas deste repositório. Nenhum arquivo dos projetos Ceifalume/empresa foi apagado nesta reorganização.
+
+## Documentos de referência
+
+- `docs/guia-do-proximo-chat.md`: contexto de continuidade do portfólio.
+- `docs/pendencias.md`: lista de tarefas vigente.
+
+Esses arquivos foram mantidos como documentação geral; o material histórico do jogo ativo fica no repositório privado `base`.
