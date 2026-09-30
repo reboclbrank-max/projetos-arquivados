@@ -51,19 +51,18 @@ mesmo dia, o segundo "trabalhe" só faz o que ficou faltando.
 | 07–09/10 | qua–sex | 20h | rotina + **construção da 0.2** (assistente pede ao dono o clone do repositório `ceifalume` na primeira vez) |
 | 10/10 | sáb | **17h** | **Post 8** — GIF da vitrine da 0.2 em andamento |
 | 11–12/10 | dom–seg | 20h | rotina + construção; relatório da semana no domingo |
-| 13/10 | ter | **20h** | **Post 9** — pedido de Reddit manual ao dono (texto pronto) + espelho nos canais |
+| 13/10 | ter | **20h** | ~~Post 9 Reddit~~ **CANCELADO — Reddit fechado pelo dono (29/09)** → rotina normal |
 | 14–16/10 | qua–sex | 20h | rotina + testes da 0.2 (dono testa no celular quando o assistente mandar o APK de teste) |
 | 17/10 | sáb | **17h** | Post 10 — "0.2 chega terça" |
 | 18/10 | dom | 20h | rotina + relatório |
 | **19/10** | **seg** | 20h | **Lançamento 0.2**: itch (dono sobe o zip/APK, assistente guia) + GitHub Release + newsletter + 6 canais |
-| 20/10 | ter | **20h** | Post pós-lançamento + **abertura do **Prancheta**** (semana 1 do `projetos/02-prancheta/cronograma.md`) |
+| 20/10 | ter | **20h** | Post pós-lançamento + **abertura do **prancheta MANAGER** (estilo Brasfoot, aprovado 28/09)** (semana 1 do `projetos/02-prancheta/cronograma-manager.md`) |
 | 20/10 → 23/11 | todos | idem | rotina de marketing (2 jogos) + bloco de produção do futebol; posts revezam Ceifalume/bastidores do futebol (máx 3/sem) |
-| **24/11** | **ter** | **20h** | **Lançamento Prancheta 0.1** (itch + Pages + APK + 6 canais + newsletter) |
+| **24/11** | **ter** | **20h** | **Lançamento prancheta Manager 0.1** (itch + Pages + APK + 6 canais + newsletter) |
 
 ## Onde o dono entra além de "trabalhe"
-- Responder às decisões de 05/10 (escopo da 0.2 e escolha do jogo 2).
+- Responder às decisões de 05/10 (escopo da 0.2 e escolha do jogo 2) — **0.2 adiada pelo dono em 29/09 ("vamos ver depois")**: o relatório de 05/10 segue de pé como insumo; construção (07–09/10) e lançamento (19/10) só valem após ele reconfirmar.
 - Testar o APK de teste da 0.2 no celular (~14–16/10) e dizer o que achou.
 - Subir os arquivos na itch em 19/10 (a API de escrita da itch é proibida — regra ⛔ em `chaves.md`).
-- Reddit manual (13/10) — texto pronto, ele cola.
-- Pendências antigas quando puder: e-mail do Pinterest, token do Hashnode, aprovação do Lemmy, bloco "Comunidade"
-  na itch, bio do Threads.
+- ~~Reddit manual (13/10)~~ — fechado pelo dono em 29/09.
+- Pendências antigas quando puder (opcionais, sem API — só o dono faz): bloco "Comunidade" na itch, bio do Threads, token do Hashnode. (Pinterest, Lemmy e Reddit fechados em 29/09.)

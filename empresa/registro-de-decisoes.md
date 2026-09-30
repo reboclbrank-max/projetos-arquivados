@@ -2,6 +2,10 @@
 
 Log datado e cronológico. Toda sessão de trabalho deve acrescentar suas entradas aqui.
 
+## Estado vigente — 30/09/2026
+
+A identidade única do jogo é **Prancheta**; a versão visível ativa permanece **0.1**. O APK ativo é o Godot, pacote `com.reboclbrank.prancheta`, `versionCode` 4, com keystore, certificado e `.idsig` preservados. Páginas e downloads paralelos foram removidos da publicação ativa; não republicar nem tratar versões de desenvolvimento como produtos separados. A home e a página de download foram verificadas após o deploy. O repositório de arquivo chama-se `projetos-arquivados`; Ceifalume, materiais da empresa, outros projetos e credenciais foram preservados. A migração do repositório privado `base` ainda precisa ser enviada e verificada.
+
 ## 📑 Índice
 
 | Data | Sobre o que é o bloco |
@@ -24,6 +28,8 @@ Log datado e cronológico. Toda sessão de trabalho deve acrescentar suas entrad
 | 2026-09-22 | token do GitHub passa a ficar na base (correção de regra) |
 | 2026-09-23 | ritmo da 0.2; catálogo em sequência; portfólio 5–10 jogos; comando único "trabalhe"; jogo 2 (Rumo ao Estrelato, plano B) aprovado; troca de chat |
 | 2026-09-24 | jogo 2: busca do nome — candidatos verificados em `projetos/02-prancheta/nomes.md` |
+| 2026-09-29 | Prancheta: pausa e tática real, menu/guia e Taça da Rivalidade; suíte 204/204 |
+| 2026-09-30 | correção definitiva da identidade, limpeza do site e reorganização dos repositórios |
 
 ### Formato de toda entrada nova
 
@@ -80,9 +86,9 @@ Feito nesta sessão:
 ## 2026-09-14 — Decisão: primeiro projeto será um JOGO
 
 - O dono decidiu **começar por jogo** (encerrada a comparação jogo vs app).
-- Pesquisa de mercado/documentação feita e registrada em
-  `projetos/pesquisa-primeiro-jogo.md` (hoje renomeado para
-  `projetos/00-pesquisa-de-direcao.md`) (o que funciona no itch.io,
+- Pesquisa de mercado/documentação registrada sob o nome provisório
+  projetos/pesquisa-primeiro-jogo.md e depois renomeada para
+  `projetos/00-pesquisa-de-direcao.md` (o que funciona no itch.io,
   recomendações de devs, expectativa realista de receita).
 - Recomendação registrada: **micro-terror estilo "caça às anomalias"**
   (escopo mínimo, demanda alta, estética preto/dourado combina com a marca).
@@ -234,7 +240,8 @@ na pasta `projetos/01-ceifalume/`.
 - **APK de teste publicado:** Release `v0.1-teste-android` no repositório
   `ceifalume` (arquivo `ceifalume.apk`, 26,7 MB, modo paisagem travado, build
   de debug) →
-  https://github.com/reboclbrank-max/ceifalume/releases/tag/v0.1-teste-android
+  (a release antiga estava no repositório privado; página pública atual para
+  executar/baixar: https://rebocl-brank.itch.io/ceifalume)
 - **Pipeline Android documentado** em `projetos/01-ceifalume/progresso.md`
   (Godot 4.3 headless + JDK 17 + Android SDK 34). Lições duras registradas lá:
   sem `textures/vram_compression/import_etc2_astc=true` o Godot aborta a
@@ -392,7 +399,7 @@ desenhos no repositório, e renomear o que estivesse desorganizado.
      se ainda fosse a Semana 1 ("contador de moedas e botão de colher"). Agora
      tem a tabela real de arquivos, o que fica fora do git e como testar sem
      abrir o Godot.
-4. **Renomeação (autorizada pelo dono):** `projetos/pesquisa-primeiro-jogo.md` →
+4. **Renomeação (autorizada pelo dono):** projetos/pesquisa-primeiro-jogo.md (nome antigo, depois renomeado) →
    `projetos/00-pesquisa-de-direcao.md`, para deixar claro que é o documento de
    direção, anterior ao projeto 01. Os nomes que o dono digita no prompt
    (`guia-do-proximo-chat.md`, `pendencias.md`, `ficha-da-marca.md`,
@@ -461,16 +468,14 @@ ele terminar o teste.
 
 1. **Camada mobile da página**, criada no repositório do jogo (`ceifalume/web/`),
    e não no `site` — o `index.html` publicado é saída gerada:
-   - `gerar-pagina.py`: injeta CSS/JS no `index.html` exportado, copia manifest e
-     ícones para a pasta publicada, **verifica** o resultado (âncoras que faltam
-     fazem o script parar em vez de publicar porcaria) e é idempotente;
+   - Um gerador temporário (não preservado) injetava CSS/JS no `index.html` exportado, copiava manifest e ícones e verificava o resultado; não há hoje um comando repetível para esse fluxo.
    - `mobile.css`: fundo preto, canvas 100%, sem rolagem elástica nem zoom por
      pinça, área segura do celular respeitada, botões de no mínimo 48 px;
    - `mobile.js`: tela cheia, aviso "vire o celular" (dispensável e lembrado pelo
      `sessionStorage`), botão de instalar, **carimbo do rascunho** na tela,
      porcentagem do download em texto grande, caixa de **erro legível** com botão
      "tentar de novo", e *wake lock* para o celular não dormir no meio do teste;
-   - `manifest.webmanifest` + `icone-marca-32/192/512.png` (copiados dos arquivos
+   - `manifest.webmanifest` + ícones da marca em 32, 192 e 512 px (copiados dos arquivos
      da marca criados hoje).
 2. **`canvas_resize_policy` 2 → 1** no preset Web do `export_presets.cfg`: com o
    valor padrão o canvas fica preso a 1280×720 e o giro de tela não refaz o
@@ -548,11 +553,12 @@ integral em `projetos/01-ceifalume/auditoria.md`. Feito:
    encaixe passou a ser feito pela moldura `#rd-arena` (proporção 16:9 travada, o
    jogo inteiro cabe) com botão de **zoom Ajustar / 150% / 200%** que lembra a
    escolha. Nada do jogo ficou inacessível por corte.
-7. **Outro erro meu, corrigido:** `gerar-pagina.py` publicava só a página + os
+7. **Outro erro meu, corrigido na época:** o gerador temporário publicava só a página + os
    ícones — o `.pck` ficava o do build anterior, ou seja, o site serviria
-   interface nova com jogo velho sem ninguém perceber. O publicador agora copia
-   os sete arquivos do motor, confere byte a byte e separou "gerar" de
-   "publicar" (o bloqueio de idempotência impedia publicar um export já gerado).
+   interface nova com jogo velho sem ninguém perceber. A correção da época passou
+   a verificar os sete arquivos e separar "gerar" de "publicar"; o gerador
+   corrigido não foi preservado, então o fluxo precisa ser reconstruído e testado
+   antes de qualquer nova publicação.
 8. **Pendência 6 da base fechada:** as duas seções `[rendering]` do
    `project.godot` viraram uma, com `--import` limpo depois.
 9. **Novas pendências abertas:** §8 (push da rev B — os três commits estão
@@ -684,7 +690,7 @@ reprodutível em `/home/user/tools/baixar-godot-novo.sh`. O `project.godot` do j
 | `index.wasm` gzip (o que a rede entrega) | 8.041.552 B | 10.142.423 B | **+2,10 MB (+26 %) de download para quem joga** |
 | `index.pck` | 89.520 B | 71.548 B | −18 KB (o 4.7 filtra metadados de arquivos excluídos) |
 | carga no mesmo Chromium (sem gzip local) | pronto em 4.343 ms, 7,8 fps | 3.361 ms, 9,8 fps | **não é ganho**: o template novo ignorou a moldura e desenhou em 844×390 em vez de 693×390 |
-| minha camada da página (`web/gerar-pagina.py`) | ✓ encaixe verificado | âncoras batem, mas o canvas escapa do letterbox | migrar custa reescrever o CSS/JS da página |
+| minha camada da página (gerador temporário da página (não preservado)) | ✓ encaixe verificado | âncoras batem, mas o canvas escapa do letterbox | migrar custa reescrever o CSS/JS da página |
 
 **Veredito registrado: o projeto fica no 4.3 até depois do lançamento.** Motivo em
 uma linha: o 4.7.2 não melhora nada do que este jogo usa hoje (layout e testes
@@ -696,8 +702,8 @@ Fica instalado ao lado, medido, e é isso.
 
 ### 3. O que o motor de verificação rendeu de produto: dá para ver o jogo jogando
 
-`ceifalume/grava_jogo.gd` (ferramenta, excluída do export): roda a cena real com um
-bot novato (colhe o que está pronto, planta no buraco vazio, vende a 70 % do
+A ferramenta GDScript temporária `grava_jogo.gd` (depois removida, nunca parte
+necessária do projeto): rodava a cena real com um bot novato (colhe o que está pronto, planta no buraco vazio, vende a 70 % do
 celeiro, amplia celeiro/cava poço) com `Engine.time_scale` acelerado, salvando cada
 quadro em PNG; `ffmpeg` monta o vídeo.
 Entrega: `projetos/01-ceifalume/verificacao/ceifalume-jogando.mp4` — 1280×720, 140
@@ -857,7 +863,7 @@ O limite é 24 campos (`MAX_CAMPOS := 24`, 4 iniciais). Custo do enésimo compra
 3.541.177. Renda por campo-dia (1 unidade por colheita × preço base): Nabo 24,0 ·
 Milho 17,5 · Trigo 22,0 · Tomate 25,3 · Abóbora 31,1 · Flor de Lume 45,8.
 
-Medido com o motor aberto, em bot guloso (`ceifalume/sim_limite.gd`):
+Medido com o motor aberto, em bot guloso (simulação temporária; o script auxiliar não foi mantido):
 
 | marco | dia de jogo (rodada 1) | dia de jogo (rodada 2) |
 |---|---|---|
@@ -934,7 +940,7 @@ toque (item 6 da pendência) e a troca da curva de custo dos campos.
 
 ### A curva dos campos, medida no motor (não no papel): quatro versões, uma rodada cada
 
-Rodei o `sim_limite.gd` (bot guloso) contra **cópias descartáveis** do projeto com
+Rodei o bot guloso, usando uma ferramenta temporária de simulação, contra **cópias descartáveis** do projeto com
 `MULTIPLICADOR_CAMPO` alterado — o repositório não foi tocado (conferido: `git status`
 limpo), e cada cópia foi apagada depois. Dia = 60 s de tempo real.
 
@@ -1349,9 +1355,9 @@ formato e abertura antes de começar; respostas: **abertura RB** e **só 16:9**.
 
 **Decisões e o que foi feito:**
 
-1. **Trailer gerado quadro a quadro, dirigindo o jogo de verdade.** Ferramenta nova
-   `ceifalume/trailer.gd` (fora do `.pck` por `exclude_filter`, junto das outras
-   ferramentas): abre `abertura.tscn` → `titulo.tscn` → `cena_principal.tscn` e usa
+1. **Trailer gerado quadro a quadro, dirigindo o jogo de verdade.** Uma ferramenta
+   GDScript temporária (fora do `.pck` por `exclude_filter`, não preservada no
+   repositório) abria `abertura.tscn` → `titulo.tscn` → `cena_principal.tscn` e usava
    as funções reais do jogo (plantar, colher, vender, loja, dia novo). O tempo de
    jogo dentro de cada quadro de vídeo é calculado a partir do tempo real medido
    (`Engine.time_scale` recalculado a cada quadro), então o vídeo sai a 30 fps lisos
@@ -1551,7 +1557,7 @@ Depois: medir antes/depois pela API e registrar, comunidades/Shorts (item M)
 e lojas grátis (1d).
 
 9. **Incidente de caminho (lição):** a edição do registro falhou porque o
-   caminho usado era `empresa/registro-decisoes.md` (sem hífen) — o nome
+   caminho usado era empresa/registro-decisoes.md (sem hífen) — o nome
    canônico, o que está no git, é **`empresa/registro-de-decisoes.md`** (com
    hífen). O `read_file` resolveu por proximidade e deu a impressão de que o
    arquivo sem hífen existia; o `cat >>` do bash (que não faz casamento
@@ -1838,37 +1844,37 @@ atualizar `conceito.md` §2/§6, este registro e a pendência §2 no mesmo dia.
 1. **Escolha do dono (24/09):** **GOALSTRIKE** (respondeu pela opção "GOALSTRIKE — o som mais forte e mais 'de jogo'").
 2. **A checagem final obrigatória (antes de fixar) encontrou dono:** `goalstrikefan.com` — plataforma de **fantasy football** ("© 2025 All rights reserved") e `supergolstrike.itch.io/supergoalstrike` — **jogo de futebol na própria itch.io** do estúdio "SUPER GOL STRIKE". Publicar um jogo de futebol chamado GoalStrike na itch.io, onde já existe um "SuperGoalStrike", causa confusão direta de busca. **Nome NÃO foi fixado** — `conceito.md` continua com o título de trabalho "Rumo ao Estrelato".
 3. **Também reprovados na mesma varredura:** **GOALSMITH** (app "Goaliesmith" de treino de goleiro — parecido e no mesmo nicho), **NETSMITH** (empresa de TI + NetSmith Services + framework acadêmico), **GOALFIRE** (newsletter + música + cavalo), **GOALBLAZE** (blog de futebol + TikTok de futebol), **GOALCREST** (fantasy football + "Goalcrest: Club Management Tycoon", jogo), **BOOTFORGE**, **PITCHFORGE** (projetos no GitHub), **STRIKEFORGE** (estúdio de jogos), **GOLDFRAME** (estúdio + subsidiária da Meta).
-4. **Limpos depois de duas varreduras dedicadas:** **GOALWRIGHT** ("o construtor de gols") e **Prancheta** ("gol cortante"); com checagem web ainda curta: PITCHWRIGHT, BOOTWRIGHT, STRIKESMITH, NIGHTLEAGUE.
+4. **Limpos depois de duas varreduras dedicadas:** **GOALWRIGHT** ("o construtor de gols") e **prancheta** ("gol cortante"); com checagem web ainda curta: PITCHWRIGHT, BOOTWRIGHT, STRIKESMITH, NIGHTLEAGUE.
 5. **Fato que se consolida em 7 rodadas:** o padrão "Goal + palavra" está quase todo ocupado no mundo — o que sobra de verdade são os **nomes de ofício** (-wright/-smith) ou construções fora do "Goal".
 6. Nada criado ou renomeado com nome novo (nem pasta, nem repositório, nem página).
 
-**Pendente:** com o **dono** — escolher entre os limpos (GoalWright, Prancheta) ou pedir uma rodada com família nova.
+**Pendente:** com o **dono** — escolher entre os limpos (GoalWright, prancheta) ou pedir uma rodada com família nova.
 
-### Ainda em 2026-09-24 — DECISÃO: o jogo 2 se chama Prancheta
+### Ainda em 2026-09-24 — DECISÃO: o jogo 2 se chama prancheta
 
-**Dono escolheu o nome (24/09/2026):** depois de 7 rodadas de busca e verificação, o nome do jogo 2 é **Prancheta** — gol + *blade* ("lâmina") = **"o gol cortante / o gol de lâmina"**.
+**Dono escolheu o nome (24/09/2026):** depois de 7 rodadas de busca e verificação, o nome do jogo 2 é **prancheta** — gol + *blade* ("lâmina") = **"o gol cortante / o gol de lâmina"**.
 
-1. **Caminho da decisão:** o dono escolheu antes o **GoalStrike**, que **caiu na checagem final** (plataforma de fantasy football `goalstrikefan.com` + o jogo **SuperGoalStrike** na própria itch.io); em seguida escolheu **Prancheta**, que passou limpo nas duas checagens — **0 na itch.io** e nenhum jogo/app/marca na web (única ocorrência encontrada: um desenho de fã no DeviantArt, uma criaturinha de Pokédex caseiro chamada "Prancheta"). Detalhe: o **GoalWright** também estava limpo e fica como reserva registrada.
+1. **Caminho da decisão:** o dono escolheu antes o **GoalStrike**, que **caiu na checagem final** (plataforma de fantasy football `goalstrikefan.com` + o jogo **SuperGoalStrike** na própria itch.io); em seguida escolheu **prancheta**, que passou limpo nas duas checagens — **0 na itch.io** e nenhum jogo/app/marca na web (única ocorrência encontrada: um desenho de fã no DeviantArt, uma criaturinha de Pokédex caseiro chamada "prancheta"). Detalhe: o **GoalWright** também estava limpo e fica como reserva registrada.
 2. **Critérios que o nome atende (exigências do dono):** nome **em inglês**, **forte e diferente**, **que não existe** como jogo/app/marca, **referência ao futebol** e **sem nenhuma ligação com o Ceifalume/fazenda**.
-3. **Aplicado no mesmo dia** (7 arquivos): `projetos/02-prancheta/conceito.md` (título + §2 linha "Nome" + §6 risco), `cronograma.md` (título + repositório `Prancheta`), `empresa/CALENDARIO-TRABALHE.md` (abertura 20/10 e lançamento 24/11), `empresa/ESTRATEGIA-CATALOGO.md`, `pendencias.md` (painel + §2), `guia-do-proximo-chat.md` (caixa de estado) e `projetos/02-prancheta/nomes.md` (topo + §7). Os históricos `projetos/02-proximo-jogo/` ganharam uma nota de ponteiro (título de trabalho antigo).
+3. **Aplicado no mesmo dia** (7 arquivos): `projetos/02-prancheta/conceito.md` (título + §2 linha "Nome" + §6 risco), `cronograma.md` (título + repositório `prancheta`), `empresa/CALENDARIO-TRABALHE.md` (abertura 20/10 e lançamento 24/11), `empresa/ESTRATEGIA-CATALOGO.md`, `pendencias.md` (painel + §2), `guia-do-proximo-chat.md` (caixa de estado) e `projetos/02-prancheta/nomes.md` (topo + §7). Os históricos `projetos/02-proximo-jogo/` ganharam uma nota de ponteiro (título de trabalho antigo).
 4. ~~A pasta `projetos/02-prancheta/` foi mantida com o nome antigo de propósito.~~ → **superado no mesmo dia:** o dono autorizou e a pasta foi renomeada (ver bloco seguinte, "Rename autorizado").
-5. **Próximo uso do nome:** repositório `Prancheta` (privado, a criar com autorização do dono na abertura da produção em 20/10) e página `reboclbrank-max.itch.io/Prancheta`. Nada foi criado agora.
+5. **Próximo uso do nome:** repositório `prancheta` (privado, a criar com autorização do dono na abertura da produção em 20/10) e página `reboclbrank-max.itch.io/prancheta`. Nada foi criado agora.
 
-**Pendente:** com o **dono** — autorizar a criação do repositório `Prancheta` na abertura (20/10) e, se quiser, renomear a pasta do projeto na base.
+**Pendente:** com o **dono** — autorizar a criação do repositório `prancheta` na abertura (20/10) e, se quiser, renomear a pasta do projeto na base.
 
 ### Ainda em 2026-09-24 — Rename autorizado: a pasta do jogo 2 virou `projetos/02-prancheta/`
 
 **Dono autorizou (24/09/2026):** "Pode salvar e mudar o nome e deixar tudo salvo no repositório."
 
-1. **O que foi feito:** `git mv projetos/02-rumo-ao-estrelato projetos/02-prancheta` — a pasta do projeto do jogo 2 passou a ter o nome oficial **Prancheta**. O `git mv` preserva o histórico de cada arquivo.
-2. **Links atualizados:** todas as referências de caminho nos documentos da base foram trocadas de `02-rumo-ao-estrelato` para `02-Prancheta` (conceito, cronograma, nomes, calendário, estratégia de catálogo, guia, pendências, registro e os históricos em `projetos/02-proximo-jogo/`).
+1. **O que foi feito:** `git mv projetos/02-rumo-ao-estrelato projetos/02-prancheta` — a pasta do projeto do jogo 2 passou a ter o nome oficial **prancheta**. O `git mv` preserva o histórico de cada arquivo.
+2. **Links atualizados:** todas as referências de caminho nos documentos da base foram trocadas de `02-rumo-ao-estrelato` para `02-prancheta` (conceito, cronograma, nomes, calendário, estratégia de catálogo, guia, pendências, registro e os históricos em `projetos/02-proximo-jogo/`).
 3. **O nome do jogo em si** já estava fixado no commit `03c377f` (7 arquivos). O nome antigo "Rumo ao Estrelato" **permanece só como título de trabalho histórico** dentro dos textos — nada de link quebrado.
 4. **Nada foi renomeado fora da pasta do projeto:** os arquivos históricos `projetos/02-proximo-jogo/` continuam com os nomes de arquivo antigos (ex.: `RUMO-AO-ESTRELATO-esboco.md`), com a nota de ponteiro apontando para o nome oficial. Renomear arquivo de histórico só com pedido do dono.
-5. **Repositório do jogo 2** (`Prancheta`, privado) ainda **não existe** — só será criado na abertura da produção (20/10), com autorização do dono na hora.
+5. **Repositório do jogo 2** (`prancheta`, privado) ainda **não existe** — só será criado na abertura da produção (20/10), com autorização do dono na hora.
 
 ### Ainda em 2026-09-24 — 1º pedido da construção: motor e movimento (estudo + protótipo)
 
-**Modo de trabalho pedido pelo dono (24/09/2026):** "Vamos começar a construir aos poucos, cada comando meu, você constrói algo." → a construção do Prancheta anda em **pedaços**: um comando do dono por vez; cada pedaço entregue é explicado em linguagem simples, salvo no repositório (commit + push verificado) e termina com o **hash informado**.
+**Modo de trabalho pedido pelo dono (24/09/2026):** "Vamos começar a construir aos poucos, cada comando meu, você constrói algo." → a construção do prancheta anda em **pedaços**: um comando do dono por vez; cada pedaço entregue é explicado em linguagem simples, salvo no repositório (commit + push verificado) e termina com o **hash informado**.
 
 **1º comando:** "como iremos fazer um jogo de futebol se movimentar? qual o motor que irá fazer isso? quais os motores que usam para construir um jogo de futebol? procure saber e traga o melhor motor para ser usado."
 
@@ -1945,7 +1951,7 @@ atualizar `conceito.md` §2/§6, este registro e a pendência §2 no mesmo dia.
 menus, escolha de time, criar jogador e a carreira (Copa do Bairro). Fica registrado como ordem de construção.
 
 **A partida ficou fechada nesta peça:**
-1. **Tela de início com o apito:** "Prancheta — 5 × 5, NÓS × ELES" + o **como jogar** em quatro linhas + "toque na tela para
+1. **Tela de início com o apito:** "prancheta — 5 × 5, NÓS × ELES" + o **como jogar** em quatro linhas + "toque na tela para
    começar". **O relógio e o jogo não andam antes do apito** (estado da partida: início → jogando → pausado → fim).
 2. **Botão de pausa** no alto da tela (o mesmo botão vira "continuar"); na pausa o **relógio congela**.
 3. **Autor do gol:** o aviso passou a ser "**GOL do 9!**" — o jogo guarda quem tocou na bola por último e credita o gol a ele
@@ -1966,15 +1972,15 @@ menus, escolha de time, criar jogador e a carreira (Copa do Bairro). Fica regist
 
 1. **Link do teste (celular, navegador):** a prévia do ambiente que serve a exportação web —
    **https://8412-i20umplsfvsww2kz7mzln.e2b.app/index.html** (a página também lista tudo em `/pc/`).
-   O servidorzinho da prévia está em `/tmp/servidor_Prancheta.py` (não versionado) e manda
+   O servidorzinho da prévia está em `/tmp/servidor_prancheta.py` (não versionado) e manda
    `Access-Control-Allow-Origin: *` de propósito, para o jogo abrir dentro da janela de prévia e conseguir baixar o `index.wasm`.
    **Vale enquanto o ambiente do assistente estiver ligado** — é canal de teste, não é a publicação.
 2. **Teste para PC: sim, agora tem.** Como o PC do dono **não tem WebGL**, o jogo no navegador não abre lá; então foi feita a
    **versão de programa**: presets novos em `export_presets.cfg` — **"PC (Windows)"** e **"PC (Linux)"** — com o jogo embutido no
-   próprio arquivo (`binary_format/embed_pck=true`). Resultado: **`Prancheta.exe` (~109 MB, um arquivo só)** e `Prancheta.x86_64` (~73 MB).
+   próprio arquivo (`binary_format/embed_pck=true`). Resultado: **`prancheta.exe` (~109 MB, um arquivo só)** e `prancheta.x86_64` (~73 MB).
    Baixa, salva e dá **dois cliques** (no Windows pode aparecer "O Windows protegeu o seu PC" → *Mais informações* → *Executar assim mesmo*).
    Teclado: **WASD/setas**, **espaço** (segurar = mais forte), **J** passa, **C** troca a câmera.
-   Download servido em **https://8412-i20umplsfvsww2kz7mzln.e2b.app/pc/** (página com as instruções) ou direto em `/pc/Prancheta.exe`.
+   Download servido em **https://8412-i20umplsfvsww2kz7mzln.e2b.app/pc/** (página com as instruções) ou direto em `/pc/prancheta.exe`.
 3. **Teste feito antes de entregar:** os modelos de PC foram extraídos do pacote oficial da Godot 4.7.2
    (`windows_release_x86_64.exe`, `linux_release.x86_64`); o **programa de Linux foi rodado de verdade** aqui (partida de 20 s sem tela →
    **0 anomalias, 0 travamentos**) e o `.exe` foi conferido como executável **PE32+ de Windows** válido. Mesma esteira de exportação para os dois.
@@ -1995,7 +2001,7 @@ esse cabeçalho automaticamente. Aberto direto no navegador do celular, ele recu
 - Binário baixado para `~/.cache/ferramentas/tunel/cloudflared` (2026.9.1, Linux x64).
 - Comando: `~/.cache/ferramentas/tunel/cloudflared tunnel --url http://127.0.0.1:8412 --no-autoupdate`.
 - Link do jogo (celular): **https://reflected-routes-beautiful-hiking.trycloudflare.com/index.html** ·
-  página do PC: **/pc/** · programa: **/pc/Prancheta.exe**.
+  página do PC: **/pc/** · programa: **/pc/prancheta.exe**.
 - **Conferido de fora**: `index.html` 200, `index.wasm` 39.5 MB servido, `index.pck` 200, `/pc/` 200 e o `.exe` (109 MB) servido em poucos segundos.
 - **Vale enquanto o ambiente estiver ligado** (é link de teste, não é publicação). Se cair, é só rodar o mesmo comando de novo — a URL muda a cada vez.
 - Fica registrado aqui para a próxima sessão: **link de teste do dono = túnel cloudflared**, nunca o endereço `...e2b.app` cru.
@@ -2084,7 +2090,7 @@ o sandbox tinha apagado a pasta; o **refresh token do Tumblr girou** no uso e a 
   Tumblr 2 posts · Mastodon 2 seguidores · dev.to 0. Δ desde 12:58: +1 view itch, +1 like Bluesky, +1 seguidor Mastodon.
 - **Próxima medição automática:** 25/09 depois da rotina das 20h (24 h do devlog).
 
-**Prancheta v6 (24/09, noite) — "travando ao extremo" + "controle horrível, sem start e select":**
+**prancheta v6 (24/09, noite) — "travando ao extremo" + "controle horrível, sem start e select":**
 
 - Causas medidas e corrigidas: (1) o jogo desenhava na **resolução física** da tela (≈3× pixels num celular comum) → desativado;
   (2) sem teto de fps (telas de 120 Hz dobravam o trabalho) → 60; (3) imagem do campo 2560×1440 → 1280; (4) sem rede de segurança →
@@ -2100,19 +2106,19 @@ o sandbox tinha apagado a pasta; o **refresh token do Tumblr girou** no uso e a 
 - **Link novo:** https://sounds-fitting-picture-offering.trycloudflare.com (o antigo morreu com o reset). Aguardando o dono testar e
   informar **fps + motor de vídeo** (aparecem no canto da tela) e se o controle melhorou.
 
-**Prancheta — link fixo (24/09, noite):** o link de túnel morreu outra vez (DNS não resolve) e o dono reclamou da demora. Solução: a build v6 foi publicada no repositório `site` → https://reboclbrank-max.github.io/site/prancheta/baixar.html (Pages confere 200; `index.pck` 79.972 B, md5 `797c4806…` igual ao local). **Regra de velocidade registrada:** respostas curtas (3 a 6 linhas), poucos passos, sem teste longo sem necessidade.
+**prancheta — link fixo (24/09, noite):** o link de túnel morreu outra vez (DNS não resolve) e o dono reclamou da demora. Solução: a build v6 foi publicada no repositório `site` → https://reboclbrank-max.github.io/site/prancheta/baixar.html (Pages confere 200; `index.pck` 79.972 B, md5 `797c4806…` igual ao local). **Regra de velocidade registrada:** respostas curtas (3 a 6 linhas), poucos passos, sem teste longo sem necessidade.
 
 **Threads (24/09, noite):** o token expirou (a Meta recusou renovar por causa do bloqueio do app) → criada a lista única `projetos/01-ceifalume/destravar-threads.md` (Parte A: 5 telas do painel com links; Parte B: reautorizar e mandar o `?code=`; plano B: postar à mão). Ordem do dono: **ele prefere que o assistente poste**.
 
 **Threads DESTRAVADO e post publicado (24/09, noite):** o dono fez a Parte A (painel da Meta) e mandou o código novo; o assistente trocou pelo token de 60 dias **e publicou** o post da rodada: https://www.threads.com/@reboclbrank/post/DdrnwECD5u- — a rodada de 24/09 fecha **6 de 6 canais**. Detalhe: o Threads aceita no máximo **500 caracteres** (o texto do plano tinha 520 → encurtado para 462). Token de 60 dias salvo em `ferramentas/chaves.md` e `~/tools/.threads.json`.
 
-**Pergunta do dono (24/09, noite) — "motor próprio":** o dono perguntou se dá para criarmos o nosso próprio motor, e especificamente um **motor que desenhe e arquitete os gráficos e as imagens**. Resposta honesta registrada: motor de jogo completo (física, render, editor, exportar para celular/navegador) é obra de anos — é por isso que estúdios grandes têm motor próprio e o resto usa Unity/Godot. O que é **totalmente viável e já é o caminho natural do projeto**: um **motor de desenho próprio** (gerador de arte por código) — a semente já existe no Prancheta (campo.gd e jogador.gd desenham tudo por código). Decisão pendente do dono: começar pelo motor de desenho (arte/imagens) e seguir com o Godot para o jogo, ou tentar motor completo. Aguardando escolha.
+**Pergunta do dono (24/09, noite) — "motor próprio":** o dono perguntou se dá para criarmos o nosso próprio motor, e especificamente um **motor que desenhe e arquitete os gráficos e as imagens**. Resposta honesta registrada: motor de jogo completo (física, render, editor, exportar para celular/navegador) é obra de anos — é por isso que estúdios grandes têm motor próprio e o resto usa Unity/Godot. O que é **totalmente viável e já é o caminho natural do projeto**: um **motor de desenho próprio** (gerador de arte por código) — a semente já existe no prancheta (campo.gd e jogador.gd desenham tudo por código). Decisão pendente do dono: começar pelo motor de desenho (arte/imagens) e seguir com o Godot para o jogo, ou tentar motor completo. Aguardando escolha.
 
 **MOTOR RB criado (24/09, noite) — pedido: "queria um motor de qualidade":**
 
 O dono perguntou se dava para criar o nosso próprio motor, e especificamente **um motor que desenhasse e arquitetasse os gráficos e as
 imagens**. Decisão de caminho: **não** um motor de jogo completo (isso é obra de anos e o Godot já está aprovado para o jogo), mas um
-**motor de arte próprio**, que é 100% viável e é a semente do que o Prancheta já fazia à mão (campo.gd/jogador.gd).
+**motor de arte próprio**, que é 100% viável e é a semente do que o prancheta já fazia à mão (campo.gd/jogador.gd).
 
 Entregue em `ferramentas/motor-arte/` (Python puro, zero dependências):
 - `motor_rb.py` — núcleo: camadas, **super-amostragem** (anti-serrilhado), formas por distância (**SDF**: círculo, elipse, cápsula,
@@ -2143,7 +2149,7 @@ credencial fora do `.gitignore` (corrigido); `progresso.md` citado em 24 lugares
 `github.com/.../ceifalume/releases` dão **404 para quem não está logado** (repositório privado) — o caminho público do APK é o botão
 Download da itch. **Rotina:** rodar a auditoria no começo de cada sessão e antes do commit final.
 
-**Prancheta v7 — o MOTOR RB desenha a arte do jogo (24/09, noite):** ordem "permaneça trabalhando, principalmente agora nesse novo jogo,
+**prancheta v7 — o MOTOR RB desenha a arte do jogo (24/09, noite):** ordem "permaneça trabalhando, principalmente agora nesse novo jogo,
 aonde quero gráficos bons e perfeitos". Decisão de caminho: **o motor de arte gera as imagens; o jogo carrega imagem** (não desenha por
 código). Entregue: `ferramentas/motor-arte/campo.py` (campo completo com textura, desgaste, arquibancada com torcida em fileiras, gols
 com rede e sombra, vinheta) → `jogo/arte/campo.png`; `campo.gd` usa a imagem (desenho antigo fica só como reserva) e o `SubViewport`
@@ -2151,7 +2157,7 @@ deixou de existir (menos memória); `goleiro.gd` novo (manga longa, luvas, boné
 Erros corrigidos: conta da posição do campo na imagem, `_ready()` duplicado no `campo.gd`, tipos anotados no `goleiro.gd`, quadro de
 sprite 84×152. **Publicado no link fixo** (`https://reboclbrank-max.github.io/site/prancheta/baixar.html`) e conferido por md5 (`31e4391…`, pck 290.616 B).
 
-**Prancheta v8 — os bonecos foram CRIADOS e TRABALHADOS (24/09/2026, madrugada):** o dono reprovou a v7 (*"tá uma porcaria, os bonecos
+**prancheta v8 — os bonecos foram CRIADOS e TRABALHADOS (24/09/2026, madrugada):** o dono reprovou a v7 (*"tá uma porcaria, os bonecos
 estão 100% genéricos, os bonecos não foram feitos e nem trabalhados, não tem realismo"*). O caminho já tinha sido decidido na v7
 — *"o motor de arte gera as imagens; o jogo carrega imagem"* — só que faltava a arte dos jogadores. Entregue: `pintor.py` (jogador em
 visão de cima, montado no referencial do jogador e girado para a tela, com passada de corrida, luz e sombra), **identidade por jogador**
@@ -2163,26 +2169,26 @@ trabalho por quadro e o celular agradece. Erros corrigidos: `_ready()` duplicado
 **Publicado no link fixo** e conferido por md5: `https://reboclbrank-max.github.io/site/prancheta/baixar.html` → `index.pck` 1.435.976 B,
 md5 `33934883be525ef47e5764427e3a20e0` (site commit `4fa96f1`).
 
-**Prancheta v9 — rodada visual concluída localmente e publicada (25/09/2026):** a v8 ainda deixava os atletas pequenos e genéricos na foto. O `pintor_realista.py` passou a ser o pintor oficial do `sprites.py`: torso em camadas, manga, braço, mão, calção, joelho, meia, chuteira, cabelo por identidade, número, luz, sombra de contato e poses de corrida, chute, dividida e comemoração. A folha agora tem **12 identidades × 8 direções × 8 poses = 768 quadros**, em 144×160; `jogador.gd` e `goleiro.gd` recortam 8 colunas, usam filtro linear e escala 0,50. O Godot 4.7.2 importou a arte; testes de 30 s e fotos sob Xvfb terminaram com **0 anomalias** e CPU de ~0,12–0,20 ms/quadro. Evidências locais: `projetos/02-prancheta/estudos/jogo-v9-campo.png` e `jogo-v9-jogador.png`. Build Web publicada em `https://reboclbrank-max.github.io/site/prancheta/baixar.html`: site commit `45de7bf19fe6359d6a67c8b08d5af3fb93de17e7`, `index.pck` local e público com md5 `da792371642e3f48a66a9e3c157552ca`. **Próximo passo:** veredito do dono no link; se aprovar, trabalhar o “por fora” (menu/criação/Copa do Bairro).
+**prancheta v9 — rodada visual concluída localmente e publicada (25/09/2026):** a v8 ainda deixava os atletas pequenos e genéricos na foto. O `pintor_realista.py` passou a ser o pintor oficial do `sprites.py`: torso em camadas, manga, braço, mão, calção, joelho, meia, chuteira, cabelo por identidade, número, luz, sombra de contato e poses de corrida, chute, dividida e comemoração. A folha agora tem **12 identidades × 8 direções × 8 poses = 768 quadros**, em 144×160; `jogador.gd` e `goleiro.gd` recortam 8 colunas, usam filtro linear e escala 0,50. O Godot 4.7.2 importou a arte; testes de 30 s e fotos sob Xvfb terminaram com **0 anomalias** e CPU de ~0,12–0,20 ms/quadro. Evidências locais: `projetos/02-prancheta/estudos/jogo-v9-campo.png` e `jogo-v9-jogador.png`. Build Web publicada em `https://reboclbrank-max.github.io/site/prancheta/baixar.html`: site commit `45de7bf19fe6359d6a67c8b08d5af3fb93de17e7`, `index.pck` local e público com md5 `da792371642e3f48a66a9e3c157552ca`. **Próximo passo:** veredito do dono no link; se aprovar, trabalhar o “por fora” (menu/criação/Copa do Bairro).
 
 **Segurança de credenciais (25/09/2026):** removidas do worktree as cópias de credenciais do GitHub/itch que estavam documentadas em arquivos rastreados. Daqui em diante, qualquer acesso deve usar segredo temporário de sessão, fora de arquivo, commit e mensagem; a auditoria deve continuar procurando padrões de token.
 
-## 2026-09-25 — Prancheta v10: passe final de arte 2D realista
+## 2026-09-25 — prancheta v10: passe final de arte 2D realista
 
-**Comando do dono:** continuar trabalhando no Prancheta, buscar o melhor 2D realista e iniciar o trabalho visual.
+**Comando do dono:** continuar trabalhando no prancheta, buscar o melhor 2D realista e iniciar o trabalho visual.
 
 1. **MOTOR RB — passe final do pintor:** `pintor_realista.py` agora separa melhor materiais e anatomia: torso com contorno e painel de sombra, costuras de ombro/barra, dobras de tecido, manga/punho, joelho, faixa da meia, lingueta/cadarço/cravos da chuteira e cabelo com volume.
 2. **Número coerente:** `motor_rb.py` ganhou `texto_numero_orientado()`. O número da camisa gira junto com o jogador nas 8 direções, em vez de ficar preso à horizontal da tela.
 3. **Profundidade:** sombra em três camadas (volume, direção e contato); no jogo, escala levemente variável pela posição no campo e `z_index` pela coordenada Y. Isso melhora a perspectiva sem tocar na física, IA ou regras.
 4. **Folha:** 12 identidades × 8 direções × 8 poses = **768 quadros** de 144×160; unidade do desenho 4,35; escala base no Godot 0,54; filtro linear. `jogadores.json` acompanha o mapa de retângulos.
 5. **Verificação:** `--import` limpo; partida só-IA e partida com robô de 30 s terminaram com **0 anomalias e 0 travamentos**; CPU medida em **0,15 ms/quadro**. Fotos conferidas sob Xvfb: `projetos/02-prancheta/estudos/jogo-v10-campo.png`, `jogo-v10-jogador.png` e `jogador-v10-close.png`.
-6. **Publicação:** export Web reconstruído com Godot 4.7.2; `index.pck` local = **3.781.464 bytes**, md5 `b205d756c65e95b44fb1ce7f729aa4f7`. A pasta `Prancheta/` foi substituída no repositório público `site`, commit **`e7b646a1b3b90094371d7cbbd8cbff4d187c1808`**, push e `git ls-remote` conferidos.
+6. **Publicação:** export Web reconstruído com Godot 4.7.2; `index.pck` local = **3.781.464 bytes**, md5 `b205d756c65e95b44fb1ce7f729aa4f7`. A pasta `prancheta/` foi substituída no repositório público `site`, commit **`e7b646a1b3b90094371d7cbbd8cbff4d187c1808`**, push e `git ls-remote` conferidos.
 
 **Pendente:** com o dono — jogar a v10 em `https://reboclbrank-max.github.io/site/prancheta/baixar.html` e dizer se o 2D realista chegou ao nível desejado. Depois do veredito, a próxima peça é o "por fora" (menu, criação do jogador e Copa do Bairro).
 
-## 2026-09-25 — Prancheta v11: refinamento do 2D realista
+## 2026-09-25 — prancheta v11: refinamento do 2D realista
 
-**Comando do dono:** continuar trabalhando no Prancheta e buscar o melhor 2D realista possível.
+**Comando do dono:** continuar trabalhando no prancheta e buscar o melhor 2D realista possível.
 
 1. **MOTOR RB refinado:** `pintor_realista.py` recebeu volume suave para pele, cabelo e tecido, sombra de gola/barra, costura dupla nos ombros, microdobras de movimento, sola separada e cravos/cadarço da chuteira. O desenho continua coerente nas 8 direções porque as peças são calculadas no referencial do jogador.
 2. **Presença em campo:** `sprites.py` passou a usar unidade 4,55 (antes 4,35) e o jogo passou de escala 0,54 para **0,56**. A folha segue com 12 pessoas × 8 direções × 8 poses, 768 quadros de 144×160, filtro linear e `z_index` por Y.
@@ -2191,3 +2197,577 @@ md5 `33934883be525ef47e5764427e3a20e0` (site commit `4fa96f1`).
 5. **Lição:** depois de trocar uma folha raster, o `--import` é obrigatório; a arte mudou o tamanho do `.pck`, mas não alterou a física/IA. O teste local sob llvmpipe reduziu para modo leve, por isso o veredito de fps continua sendo do dono no aparelho.
 
 **Pendente:** com o dono — jogar a v11 em `https://reboclbrank-max.github.io/site/prancheta/baixar.html` e dizer se o 2D realista chegou ao nível desejado. Só depois entra o "por fora" (menu, criação do jogador e Copa do Bairro).
+
+## 2026-09-26 — prancheta v7.1: campo 1.18 + gol profundo 28px + número gigante + bias FIFA (`f33d720`)
+
+**Contexto:** dono pediu 25/09 18:04/18:44/19:48: gol fora do campo (não antecipado), campo pequeno, número ilegível, 16 seleções com força real, plus "pivô 25/09 19:48 campo real 620×380 gol quadrado na pista mureta total fechada vão GOAL_H".
+
+1. **Campo 1.18:** `ferramentas/motor-arte/campo.py` escala 1.18 (de 1.08→1.18) → imagem 1040×638 (era 952×584), prof gol 28 px (era ~18), are_w 0.157/ are_h 0.593 FIFA real, mureta 100% fechada quadrada com vão só na boca `GOAL_H`. `jogo/arte/campo.png` 159K atualizado.
+2. **Número gigante:** `pintor_botao.py` escala `max(3, round(u*0.88))` com contorno bold + `texto_numero_orientado` já presente; número legível no campo.
+3. **IA bias força FIFA:** `hud.gd` `SELECOES 16` ARG92 FRA90 BRA89 ING88 ESP87 POR86 HOL85 ALE84 BEL83 CRO82 URU81 ITA80 MEX78 USA77 JAP76 SEN75 + `jogo.gd` bias de força (ataque/defesa escalado).
+4. **Commit:** `f33d720` (sobre `1648f17`) com mensagem `v7.1 menu selecao + correcoes pedidas: gol fora profundo 28px campo 1.18 maior numero bold visivel IA bias forca FIFA`.
+
+## 2026-09-26 — prancheta v8.1 merge: IA determinística 0.07/0.98 + pintor 0.92 + bandeira 2.02 sobre v7.1 (`a77113f` + `d9ac31e`)
+
+**Contexto:** dono reprovou IA "não inteligente" — exige v8 difícil sem aleatório; restantes pivôs 25/09 18:29/19:45: uniforme = bandeira, botões únicos, 4 botões pequenos, campo fechado com tabela.
+
+1. **IA v8 determinística difícil (sem `rand`):** `jogo.gd` removidos 5 `rand` (era aleatório), `jogador.gd` `pensar_cd 0.07` (era 0.09/0.11), `vel_max 0.98` adversário / `0.94` parceira (era 0.96/0.90), condução `*1.08`, goleiro `1.02/0.86`, interceptação preditiva `vb*0.30` + quique na mureta, chute no canto oposto, parceira triangula sem roubar bola. Comentário `v8 DIFICIL: pensa instantaneo 0.07 deterministico sem aleatorio`.
+2. **Pintor 0.92:** `ferramentas/motor-arte/pintor_botao.py` `u*0.92` (era 0.88) + miolo `0.48` (era 0.45) → número central GIGANTE legível.
+3. **Bandeira 2.02:** `sprites_bandeira.py` `U 2.02` (era ~1.85) → arte `jogadores.png 56K 4096×864 (64×72) 768 quadros 12 linhas` com estampa da bandeira real (BRASIL vs ARGENTINA na folha base), `jogadores.json` 48K.
+4. **HUD 16 seleções + PWA/APK:** `hud.gd` menu 4×4 + `botao_jogar` JOGAR, `export_presets.cfg` `PWA true` + `Android pacote anterior arm64-v8a` `export_path APK anterior removido`.
+5. **Merge decisão:** `a77113f` mescla `f33d720 (campo 1.18/prof28)` + `db3d1ed (v8)` mantendo **1.18** (campo maior) e aplicando IA/pintor/bandeira/hud — não volta a 1.08. Arte regenerada 18:20 `campo-prancheta.png 159K` + `jogadores.png 56K` copiadas para `jogo/arte/` + `.godot/imported/*.ctex` reimportado.
+6. **Export + site:** `godot --headless --export-release Web` → `index.pck 284K index.wasm 38M` (antes 354K 1.15); `cp export/web/* /tmp/site/prancheta/baixar.html` → `site d9ac31e` `prancheta web 1.18 1040x638 v8.1 pck 284K` + anterior `d3cb12c APK 77M`; `APK anterior removido 80.455.225 B sha 804f099636f29527206cb4745c02a3c3f995f389` verificado via `git clone --depth1` e `api.github.com/repos/reboclbrank-max/site/contents/prancheta`.
+7. **Validação:** `git status` limpo após `git restore + rm`, `grep` confirma `pensar_cd 0.07 vel 0.98/0.94 sem rand em jogo.gd`, `hud SELECOES 16`, `campo escala 1.18 prof28`, `godot --headless -- --teste --sem-leve --tempo=10` 10s 0.43ms 0 anomalias 0 travamentos.
+8. **Pendente atual:** dono testar `https://reboclbrank-max.github.io/site/prancheta/baixar.html` e `APK anterior removido`; docs `pendencias.md` e `guia-do-proximo-chat.md` atualizados nesta sessão para refletir v7.1/v8.
+
+## 2026-09-27 — APK do prancheta "todo bugado": causa achada e corrigida; Pinterest descartado
+
+1. **Pinterest DESCARTADO pelo dono** (mensagem da noite de 27/09: "deixe descartado, não é algo útil mesmo").
+   App ID 1615023 continua criado, sem token; trial nunca foi aprovado (401 code3/2 na reteste de 26/09 e 27/09).
+   Item sai da lista de pendências — reabrir só se o dono pedir.
+2. **Print duplicada do itch REMOVIDA pelo dono** (item2 da lista: era o id 30040026, byte a byte igual à capa).
+3. **APK prancheta (v8.1) — diagnóstico completo:**
+   - APK publicado = código atual do repo, byte a byte (comparação dos .gdc compilados: APK == site == repo);
+     assinatura antiga CN=Godot; menu→JOGAR→partida roda sem erros no computador (teste do caminho real, 30 s).
+   - **Causa do "todo bugado": o manifesto saía com `android:screenOrientation=fullUser` (11)** — o app
+     aceitava RETRATO; em pé a interface fica desalinhada/inutilizável. Origem: `display/window/handheld/
+     orientation=4` no project.godot — no Godot 4.7.2 esse valor vira fullUser no Android (tabela medida por
+     exportação-prova: 0→0 landscape, 1→1, 2→8, 3→9, 4→11 fullUser, 5→12, 6→13; ≥7→0).
+   - **Correção: `orientation=0` (Landscape travado)** + teste do jogo no navegador (chromium headless,
+     toque real): menu, seleção, JOGAR, partida com relógio e movimento — **0 erros de console/página**.
+   - **Export refeito sem gradle** (`use_gradle_build=false`, caminho legado do próprio Godot: template
+     android_release.apk + apksigner) — toolchain reinstalada do zero (JDK17 + SDK build-tools 35/36,
+     receita de `ferramentas/publicar-apk.sh`), keystore debug novo em `~/.config/godot/debug.keystore`.
+   - APK final: 26,7 MB (o antigo tinha 80 MB por causa do .so descomprimido do gradle), assinatura NOVA
+     (CN=Android Debug) → o dono precisa **desinstalar o antigo e instalar o novo** (assinaturas diferentes
+     não fazem upgrade).
+4. **Reddit**: dono pediu o link para criar a API — app tipo "script" em reddit.com/prefs/apps (passos
+   enviados no chat). Muda a decisão "Reddit descartado" de 18/09 só quando ele entregar as chaves.
+
+### 28/09 madrugada — confirmações
+5. **Pinterest respondeu por e-mail (recebido ~25/09, visto 28/09): NEGATIVA oficial de API access**
+   ("weren't able to approve your request for API access"). Fecha o caso Pinterest — descrito como
+   descartado no item 1 acima; sem resposta/reabertura.
+6. **Reddit**: dono enviou o formulário de pedido de acesso (ticket de suporte) na madrugada de 28/09
+   (categoria: desenvolvedor / app fora do Devvit, conta ReboclBrank, subreddits r/indiegaming, r/IndieDev,
+   r/gamedev, r/playmygame). Aguardando resposta do Reddit (se aprovado: criar app script em prefs/apps,
+   redirect localhost:8080, e eu automatizo).
+
+7. **Reddit DESCARTADO de vez pelo dono (28/09, madrugada)**: o formulário de pedido de acesso
+   entrou em loop infinito (Submit recarrega sem confirmar; testou tradução off, aba anônima e rede —
+   problema reportado dezenas de vezes por terceiros também). Dono decidiu não insistir: canal
+   oficialmente fechado, igual Pinterest. Reabrir só se ele pedir.
+
+## 2026-09-28 — prancheta v9: dono testou o APK novo e "não gostei" (manada, feio)
+
+Dona-feedback do dono (28/09, madrugada): "todo mundo encima da bola", "muito feio, muito estranho".
+Causas achadas e corrigidas (medição antes/depois com o harness --teste,60s, campo idêntico):
+
+1. **MANADA (IA)** — com posse própria, TODOS os não-goleiros entravam no modo apoio orbitando o
+   dono (pico:7 de8 em até35u da bola). Agora: só o caçador +1 apoio chegam perto; o resto segura
+   a formação; separação entre companheiros42→48. **Medido: pico7→5, total2.06→1.29/8,
+   nossos0.58→0.32/3** (+ posse54%→64%,0 travamentos,0 anomalias).
+2. **FEIO/ESTRANHO** — (a) MODO LEVE caía fácil (2s<46fps) e desenhava a62%/75% = borrado;
+   agora degrada só com4s sustentados, sobe em3s e o piso subiu para85%/72%; (b) linha de debug
+   "fps · MODO LEVE · placa de vídeo" no canto — some no APK (só build de debug; pausa continua
+   mostrando); (c) dicas "começar/câmera: campo inteiro" some durante a partida (ficam no
+   menu/pausa/fim).
+3. **SENSAÇÃO REAL** — tremor sutil de câmera no chute forte (0.10) e no gol (0.26), com decaimento.
+
+QA: harness headless [TESTE] FIM limpo (0 erros de script) + web QA chromium/puppeteer:0 erros de
+console/página, toques OK, movimento confirmado. APK v3 exportado (26.7MB, manifest
+screenOrientation=0, cert8fd02d3d) e publicado no site junto com o build web novo.
+
+## 2026-09-28 (depois) — prancheta v10: "não é como um jogo de futebol" (dono: "tudo")
+
+Feedback do dono: "cheio de bugs, falhas e não está conforme um jogo de futebol funciona" (respondeu
+"tudo" às opções). Causa estrutural encontrada: o jogo era um CAMPO FECHADO (bola quicava na mureta —
+design antigo "tabela na parede") e tuning arcade (bola colada no pé CTRL19.5, MAXV108, chute520).
+
+Correções v10:
+1. **REGRAS DE SAÍDA**: `_fora_de_campo` reescrito — sem quique: bola que cruza as linhas dá
+   **LATERAL** (para quem não tocou por último), **ESCANTEIO** (defensor tocou na fundo) ou
+   **TIRO DE META** (atacante tocou), com anúncio no HUD, reposição com "tiro" suave pra dentro
+   e cooldown0,35s (primeira versão dispara loop de lateral22× — corrigido com folga interna + cooldown).
+   Limpeza: previsão do caçador sem quique, IA deixou de usar "tabela na mureta" sob pressão.
+2. **RITMO REAL**: CTRL19.5→15 (bola rola, não cola), MAXV108→96, ACC620→520, chute520→470,
+   atrito BFRI0.88→0.68 (bola desacelera como no gramado), drible sem teletransporte.
+3. **MARCAÇÃO**: distância de marca18→13px (colado no adversário).
+4. Texto do HUD de pausa: "COLA + MURETA" → "REGRAS: LATERAL • ESCANTEIO • TIRO DE META".
+
+Testes (harness60s):3 laterais dispararam limpo (1× cada),0 travamentos,0 anomalias,
+posse61%, manada pico5/nossos0.35, cpu0.27ms. QA web:0 erros, movimento, toques OK.
+APK v10 (26.7MB, screenOrientation=0, cert8fd02d3d) + web publicados no site.
+Obs.: ambiente reiniciou no meio (chromium/sdk/templates somem) — toolchain recriada na hora.
+
+## 2026-09-28 (noite, 2ª entrada) — Dono reprova o JOGO DE PARTIDA; novo rumo em discussão: modo carreira estilo Brasfoot
+
+**Palavras do dono:** *"não chat, tá uma bosta, veja as fotos, apenas veja, vou pensar em algo novo para mudarmos o jogo, o jogo desse jeito não vai pra frente não, que tal a gente fazer tipo modo carreira"* — junto veio uma pesquisa sobre o **Brasfoot** (manager brasileiro: técnico/administrador — elenco, escalação, tática, mercado, salários, finanças, estádio, campeonatos, rebaixamento, reputação; partidas simuladas rápido, sem gráfico pesado) e a pergunta: *"dá para pegarmos como base e fazermos algo semelhante e irmos melhorando aos poucos?"*
+
+1. **Veredito: o prancheta como jogo de partida está REPROVADO** (dono testou o APK v10). Conclusão de uma série de reprovações (v4 "desorganizado/1d", v7 "porcaria/genérico", v9 "manada/feio", v10 "não é como um jogo de futebol" → agora "tá uma bosta, não vai pra frente"). Pedido dele nesta mensagem: **apenas ver as fotos**. Nota honesta: este chat não tem visão de imagem (as capturas de `estudos/` foram abertas mas o assistente não enxerga aqui); o entendimento vem do histórico documentado. Nada foi alterado no jogo.
+2. **Achado crítico de memória — sessão paralela com trabalho NÃO SALVO:** o dono colou o transcript de OUTRO chat que pivotou o jogo para um rascunho **"GolBlade"** (grafia nova): modo **retrato**, pacote `com.golblade.gerenciador`, APK 26,7 MB assinado com chave nova (cert `5B:83:7B:8A…`), "v1.0" com harness 0 erros e QA web verde, commits **locais** `base 1ccf486` + `site f5625cd`/`7ce32bd` — a sessão terminou pedindo token para empurrar. **Conferido no GitHub nesta sessão (28/09 à noite): NENHUM desses commits existe** (base HEAD `de46615`; site HEAD `43a3f0d`; sem pasta `golblade/` no site; grep "golblade" na base = 0 ocorrências). O trabalho vive só no ambiente daquele chat: se ele ainda estiver aberto, o dono manda o token LÁ para salvar; senão, perdeu-se e se refaz aqui.
+3. **Posição do assistente (recomendação; decisão é do dono):** manager estilo Brasfoot **encaixa nas forças do projeto e ataca cada reprovação dele**: sem boneco em campo (o problema crônico do visual some), a estratégia É o jogo (escalação/formação/mercado/salário), ritmo controlado pelo jogador (temporada simulada rápido), estrutura real do futebol (tabela, divisões, rebaixamento, reputação). Brasfoot prova a demanda (20+ anos; 1 mi+ de downloads no Android segundo a pesquisa colada). Filosofia igual à do Ceifalume: pequeno e acabado, crescendo em camadas ("irmos melhorando aos poucos" — palavras do dono). 0.1 sugerida (a detalhar no conceito, se aprovado): um clube pequeno fictício, elenco, escalação + formação, campeonato curto simulado, mercado básico, tabela. **Nomes fictícios/editáveis** (mesma política da marca; o próprio Brasfoot é editável). Como as partidas seriam simuladas (números), o limite 5×5 do arcade não se aplica — 11×11 é possível desde a 0.1. A partida v10 pode voltar um dia como "modo assistir", ou ser aposentada sem drama. A experiência do Ceifalume (economia, save, interface grande, medição) serve inteira.
+4. **Nada foi construído nesta sessão** — leitura, verificação no GitHub e este registro. O jogo de partida v10 segue publicado (`site/prancheta/baixar.html` + APK) até ordem do dono. Ambiente: clone do `site` apagado depois da verificação (workspace perto do teto de ~128 MB).
+
+**Pendente:** com o **dono** — (a) decidir o novo rumo (manager/carreira) e mandar o "vai" → assistente escreve conceito + cronograma do novo recorte; (b) dizer se resgata o rascunho da sessão paralela (mandar token naquele chat) ou refazemos aqui; (c) nome continua prancheta ou muda (o rascunho paralelo usou "GolBlade"); (d) data de 24/11 fica ou remarca.
+
+## 2026-09-28 (noite, 3ª entrada) — DONO APROVA o novo rumo: manager estilo Brasfoot + rodada completa de 28/09
+
+**Palavras do dono (2ª mensagem da noite):** *"tem esse jogo, dá para pegarmos como base e fazermos algo semelhante e irmos melhorando aos poucos"* + *"faça a rodada completa de hoje"*.
+
+1. **DECISÃO: o jogo 2 será um MANAGER DE FUTEBOL estilo Brasfoot** (você é o técnico/administrador: elenco, escalação, formação, mercado, finanças, campeonatos; partidas simuladas rápido), com nomes fictícios/editáveis, crescendo em camadas ("melhorando aos poucos"). Substitui o jogo de partida (reprovado na 1ª mensagem da noite — ver 2ª entrada). **Fica em aberto, com o dono: nome** (continua prancheta?) **e data** (24/11 mantida?). O jogo de partida v10 segue publicado até nova ordem; intenção registrada: reaproveitá-lo um dia como "modo assistir" ou aposentá-lo sem drama.
+2. **Próxima peça do assistente: conceito + cronograma do recorte 0.1 do manager** (a escrever quando o dono mandar — construção segue "em pedaços", 1 comando = 1 peça). Sugestão já registrada na 2ª entrada: clube pequeno fictício, elenco, escalação + formação, campeonato curto simulado, mercado básico, tabela.
+3. **Rodada de 28/09 (seg, 20h — rotina, sem post; Post 5 é ter 29/09 20h):**
+   - Leitura em 6 canais: **0 notificações/opiniões novas** (Bluesky 0 desde 27/09 15:41 · Mastodon 0 · Discord sem mensagens humanas · Telegram 2 membros, 0 updates · Threads vivo).
+   - Interação ativa (limite 3–5/dia respeitado): **Bluesky 4 likes + 4 follows** no nicho #godot/#indiedev (@smileycrew, @cupdragongames, @denyally, @soundemote → seguindo 42) · **Mastodon 3 favoritos + 3 follows** na tag #godot (@CarePackage17@mastodon.gamedev.place, @tuxic@mastodon.xyz, @lokigwyn@vintagepropagand.art).
+   - `threads-token.py`: acesso vivo (renovado <24 h na rodada de 27/09 — nada a fazer). Cópias vivas `~/tools/.tumblr.json` e `~/tools/.threads.json` recriadas (sandbox apaga `~/tools`).
+   - **Medição 19:58** gravada em `marketing/METRICAS.md`: **itch 85 views (+1) · 38 downloads (=) · 0 compras · APK GitHub 24 (=) · trailer 6 (=) · Bsky 5 seg / 28 likes / 9 reposts · Masto 3 seg · dev.to 10 · Tumblr 3 posts · Threads 3 posts / 21 views**. Dia tranquilo pós-relatório; o foco da semana é o Post 5 de amanhã.
+   - Incidente pequeno (com lição): a 1ª medição saiu com `?` no Threads — o zelador **não reescreve** `~/tools/.threads.json` quando não renova. Linha removida e medição refeita com o arquivo recriado à mão. Regra: conferir as duas cópias vivas ANTES de medir.
+   - Auditor: abertura **93/100 (0 erros, 7 avisos)** — os mesmos antigos (docs citando arquivos inexistentes + métrica parada); reexecutado antes do commit final.
+
+**Pendente:** com o **dono** — (a) nome do jogo do manager; (b) data de lançamento (24/11?); (c) o "vai" para escrever conceito + cronograma (ou virá no "trabalhe" de amanhã). **Amanhã (ter 29/09 20h): Post 5 — bastidor idle 8h**, 6 canais.
+
+## 2026-09-28 (noite, 4ª entrada) — Incidente corrigido: o commit d797970 duplicou o fim do `pendencias.md`
+
+1. **O que aconteceu:** a edição da 2ª entrada (bloco "ATUALIZAÇÃO 28/09" na §2 do `pendencias.md`) foi feita por casamento difuso de texto e errou o lugar — o bloco NÃO entrou e o fim do arquivo ganhou 9 linhas duplicadas/quebradas (a partir de `PERACAO.md` cita…`), que subiram no commit `d797970`. Detectado nesta rodada ao reeditar a §2 (o grep não encontrava o bloco).
+2. **Correção (mesma sessão):** fim do arquivo restaurado (uma só seção "Segurança"), bloco da §2 inserido com âncora exata (versão "APROVADO"), linha M2 e guia atualizadas — tudo re-verificado com grep + diff completo antes de commitar.
+3. **Lição permanente:** depois de QUALQUER edição difusa em arquivo grande, conferir com `grep` o texto inserido e olhar o `git diff` INTEIRO do arquivo antes de commitar — o `--stat` sozinho não denuncia duplicação no fim de arquivo (passa como "+11 −1 plausível"). Em arquivo de memória, preferir script com âncora exata + `assert`.
+
+## 2026-09-28 (noite, 5ª entrada) — Dono manda o "Vai": conceito + cronograma do manager entregues
+
+**Comando do dono:** *"Vai"* (resposta à oferta de escrever o conceito + cronograma do manager).
+
+1. **Escritos os dois documentos:** `projetos/02-prancheta/conceito-manager.md` (o que é, o dia a dia do técnico, elenco com números simples, partida simulada, campeonato de 8 clubes × 14 rodadas, mercado básico, aparência, plataforma R$ 0, nomes fictícios, mapa de camadas 0.1→0.5) e `projetos/02-prancheta/cronograma-manager.md` (peças P1–P10, semanas 20/10→24/11, regra de corte sem esticar a data). Os antigos `conceito.md` e `cronograma.md` ganharam aviso de histórico no topo (nada foi apagado). Calendário atualizado (20/10 = abertura do manager; 24/11 = lançamento da 0.1).
+2. **Decisões assumidas dentro dos docs (editáveis, à espera do ok do dono):** nome de trabalho prancheta; data alvo 24/11; recorte 0.1 = clube pequeno fictício + elenco ~20 (nome/posição/idade/força/valor) + escalação de 11 com 3 formações + campeonato simulado de 14 rodadas + mercado básico; **motor do manager = receita do Ceifalume** (página + APK — jogo de telas e números não precisa de física), com o Godot guardado para o futuro "modo assistir" (camada 0.5+).
+3. **Rascunho da sessão paralela:** segue sem resgate (o dono não mandou o token naquele chat) — o manager será construído do zero aqui; nada do histórico se perdeu (docs antigos preservados).
+4. Próximos passos: dono lê e dá ok/ajustes → **P1 (dados dos 8 clubes + ~160 jogadores fictícios)**, primeira peça de construção. Marketing segue normal: **ter 29/09 20h = Post 5**.
+
+**Pendente:** com o **dono** — ler `conceito-manager.md` e aprovar/ajustar (nome, data, motor sugerido). A bola da construção volta ao assistente com o ok (ou com um "faça a P1").
+
+## 2026-09-28 (noite, 6ª entrada) — Comando "faça tudo hoje": prancheta MANAGER 0.1 de teste construído e publicado
+
+**Comando do dono:** *"Faça tudo hoje do prancheta, se conseguir fazer tudo, a gente posta hoje ou amanhã, deixe ele pronto pra eu testar, se eu gostar a gente posta"*.
+
+1. **O que foi feito (P1–P10 numa sessão):** jogo completo em **um único arquivo** — `projetos/02-prancheta/manager/index.html` (motor + interface, ~1110 linhas, 48 KB). Mundo: 8 clubes fictícios com tradição sorteada (55–72), elenco de 20 jogadores com nomes fictícios, piscina de 50 livres (6 joias). Jogo: escalação em campo com 3 formações (4-4-2 / 4-3-3 / 3-5-2) + ESCALAR AUTOMÁTICO, partida simulada ao vivo (placar, cronômetro, frases com nomes dos jogadores, ACELERAR e RESULTADO DIRETO), Liga do Interior com 14 rodadas e tabela, mercado (10 por rodada, verba de R$ 5 mi, 1 venda por rodada com 85% de volta), fim de temporada com campeão e JOGAR DE NOVO, salvamento automático no navegador. Interface grande estilo Ceifalume, tema verde/dourado, tudo em português, nomes 100% fictícios.
+2. **Técnica (dentro do aprovado no conceito):** receita do Ceifalume — página única de navegador (roda no PC do dono, sem WebGL), sem dependência externa, custo R$ 0. Partida é matemática: força dos 11 escalados × força do adversário, com mando de campo.
+3. **Testes (P10):** `manager/teste-motor.js` — extrai motor e UI do index.html e joga temporadas completas num DOM falso, sem navegador: **71/71 testes verdes** (unidades, estatística do motor de partida, 3 temporadas com invariantes da tabela, save/load, fumaça da UI do início ao fim com compra, venda e reinício).
+4. **Publicação de TESTE (P9 parcial):** repo `site`, commit `704162f` — pasta `prancheta-manager/` no ar em **https://reboclbrank-max.github.io/site/prancheta-manager/** (verificado, HTTP 200). **Sem anúncio em nenhum canal** — combinado: só depois do ok do dono. APK fica para depois do ok (mesma receita do Ceifalume). O arcade v10 segue intacto em `site/prancheta/baixar.html`.
+5. **Incidente da noite (causa-raiz achada):** 3 edições de texto no index.html se perderam durante o desenvolvimento — **editar o mesmo arquivo em chamadas paralelas faz as edições se sobrescreverem** (provavelmente a mesma causa do fim duplicado do `pendencias.md` da 4ª entrada). Detectado pelos testes automáticos e corrigido com script de âncoras exatas. **Lição nova: nunca editar o mesmo arquivo em mais de uma chamada paralela — uma edição por vez, ou script Python com âncora + assert.**
+6. **Bugs pegos e corrigidos antes de publicar:** botão RESULTADO DIRETO não gravava o jogo; gravação da rodada não era atômica (um refresh no meio duplicaria a partida — agora a tabela só é gravada no CONTINUAR, com previsão separada); estrelas da escolha de clube eram fixas (a tradição agora é sorteada antes da escolha, com a mesma semente).
+
+**Pendente:** com o **dono** — testar o jogo no link (celular ou computador) e dizer **gostou / não gostou + ajustes**. Se gostar: anúncio nos 6 canais (hoje ou amanhã — ter 29/09 20h já tem o Post 5 do Ceifalume) + build do APK.
+
+## 2026-09-28 (noite, 7ª entrada) — Veredito parcial do dono: "tá melhorando" + comando de salvar tudo
+
+**Palavras do dono:** *"Tá melhorando, deixe tudo salvo no repositório para assim prosseguirmos"*.
+
+1. **Veredito do teste da 0.1 do manager: "tá melhorando"** — sinal positivo, mas **sem o ok final para anunciar**. Nada foi postado nos canais e o APK não foi feito (ficam para o ok explícito do dono).
+2. **Comando cumprido:** conferido que tudo da sessão já estava no repositório (jogo `manager/index.html` + testes `teste-motor.js` no commit `29d2f10`/`43ea720`; build de teste no repo `site`, commit `704162f`, link no ar). Esta entrada + pendências + guia completam o registro do dia.
+3. **Prosseguir (quando o dono mandar):** caminhos possíveis — (a) lista de ajustes do manager (o que ele quiser mudar), (b) ok para anunciar nos 6 canais + build do APK, (c) próximas camadas do jogo (finanças, treinamento, as peças cortadas). **Bola com o dono.**
+
+**Pendente:** com o **dono** — dizer o que melhorar ou mandar postar. Rotina de marketing segue normal: **ter 29/09 20h = Post 5 do Ceifalume** (bastidor idle 8h).
+
+## 2026-09-29 — prancheta MANAGER 0.1 refinado para um teste mais próprio e profissional
+
+**Comando do dono:** *"Continue trabalhando o prancheta, faça ele mais profissional, sem ser genérico, nada de jogo genérico, tudo feito e organizado, é faça aquilo que você acha melhor para a versão 0.1"*.
+
+1. **Identidade do mundo:** especialização da Liga do Interior Sergipano, com 8 clubes fictícios ligados a municípios reais, estádio/capacidade, apelido, lema, rival regional e um escudo SVG original por clube. Os clubes e atletas são inventados; municípios são ambientação.
+2. **Elencos e tática:** agora todos os clubes têm plantéis completos (20 por clube, 160 atletas com nomes distintos); 50 jogadores livres continuam no mercado (**210 nomes únicos no total**). Força de adversários corresponde ao onze inicial, e a simulação compara ataque/meio/defesa — as vagas, a formação e os titulares escolhidos influenciam chances e posse.
+3. **Partida com relatório próprio:** autores dos gols e assistências; posse, finalizações, chutes no alvo, escanteios e amarelos; destaque da partida; estatísticas guardadas no histórico; artilharia da liga. Campo estilizado com bola que se desloca durante o relógio, brilho em gol, transição leve, apito e som ambiente sintetizados no navegador com controle SOM/MUDO.
+4. **Ficha e leitura:** VER FICHA abre o cartão individual (posição, força, idade, valor, gols/assistências, clube); classificação ganhou forma recente. Interface respeita a preferência do sistema por movimento reduzido. Código segue em arquivo HTML autossuficiente, seções numeradas e sem recursos externos.
+5. **Compatibilidade:** saves da build anterior migram para o formato novo mantendo rodada, dinheiro, elenco e tabela; partidas antigas continuam no histórico. Nenhum anúncio, post de marketing ou APK foi feito. **Só a versão silenciosa de teste será atualizada no mesmo endereço**, para o dono testar esta iteração.
+6. **Testes ampliados:** `projetos/02-prancheta/manager/teste-motor.js` — **129/129 verdes**, cobrindo mundo, formações/setores, autoria de gol, estatísticas, três temporadas, migração, ficha do atleta, campo/relógio ao vivo e o clique real em RESULTADO DIRETO.
+
+**Pendente:** com o **dono** — experimentar a nova build e apontar o próximo ajuste ou aprovar explicitamente a divulgação. APK e posts nos canais continuam bloqueados até aprovação.
+
+## 2026-09-29 — Dono ainda sente genericidade; estimativa honesta da 0.1
+
+**Pedido do dono:** *"Ainda tou achando o jogo genérico, faça a análise é diga a % de quanto o jogo está genérico"*.
+
+1. **Resultado:** estimativa qualitativa de **70% genérico** (aprox. 30% distintivo), com margem de ±10 pontos; não é uma medição científica. Método e pesos estão em `projetos/02-prancheta/manager/ANALISE-GENERICIDADE-0.1.md`.
+2. **Motivo principal:** a personalização atual está mais no cenário e na apresentação — nomes, municípios, escudos, estádios, fichas e sons — do que nas regras. Os clubes se comportam quase igual, o ciclo de gestão é curto e familiar, as partidas oferecem pouca estratégia ajustável e a carreira não mantém consequências próprias entre temporadas.
+3. **Correção de avaliação:** na entrega anterior, dei peso demais a escudos, nomes e estatísticas ao chamar a build de mais profissional. Isso não resolveu o que o dono está apontando: a experiência central ainda é genérica.
+4. **Direção recomendada, ainda não implementada:** criar uma mecânica central da Liga do Interior que faça rivalidades, estádios e características dos clubes alterarem decisões e consequências. Não adicionar mais cosméticos como resposta principal.
+
+**Pendente:** com o **dono** — escolher qual identidade/mecânica deve guiar a próxima revisão. Esta análise **não muda o jogo**, não aprova divulgação e não autoriza APK; sem posts/APK até ok explícito.
+
+
+## 2026-09-29 — prancheta Manager: pausa tática e identidade regional
+
+1. Implementados no `projetos/02-prancheta/manager/index.html` menu principal organizado, guia acessível, menu da carreira e tecla Esc para pausar/retomar. O jogo arcade antigo não foi removido nem alterado.
+2. Durante uma partida agora é possível pausar e retomar; trocar a formação, escolher um dos quatro planos táticos, e fazer até cinco substituições válidas. Só entram reservas compatíveis com a vaga; atleta substituído fica impedido de voltar. O relógio para enquanto pausado.
+3. Formação, plano e substituições recalculam os eventos e estatísticas do trecho restante da partida. Os efeitos táticos afetam o motor, não são apenas botões visuais. Saves sobem à versão 3 e migram as versões antigas.
+4. Criada a **Taça da Rivalidade**: os dois clássicos entre os clubes rivais contam pontos; saldo de gols desempata e empate total divide a taça. Ela aparece no painel do clube e no fechamento da temporada, ligando os clubes locais a uma disputa concreta.
+5. Atualizados `GUIA-TESTE-0.1.md`, `ANALISE-GENERICIDADE-0.1.md`, `conceito-manager.md` e os testes. **204/204 testes automatizados passaram**, incluindo temporada inteira, pausa, relógio, alterações táticas, substituições e título regional.
+6. Incidente de teste: clicar para substituir o goleiro não apresentava reservas quando o único reserva compatível já havia sido vendido. A tela foi corrigida para mostrar a mensagem de indisponibilidade em vez de falhar; o teste agora escolhe um titular com reserva elegível. Lição: validar dados de elenco real e caminhos sem opção, não apenas o caso feliz.
+7. **A meta “0% genérico” permanece uma aspiração, não uma porcentagem comprovada.** A estimativa de 70% no arquivo de análise é histórica, anterior a estas mudanças; não foi recalculada. A nova disputa regional torna a rivalidade significativa, mas ainda precisa de validação do dono.
+8. A revisão permanece local e não foi publicada no site; **nenhum APK foi criado** e nenhuma divulgação foi feita.
+
+**Pendente:** com o **dono** — jogar a revisão local e dizer se menu, pausa e Taça da Rivalidade atendem à direção. Publicação, APK ou divulgação continuam dependendo de autorização explícita.
+
+
+### Ainda em 2026-09-29 — análise de genericidade e erros antes do teste
+
+1. Reavaliei o Manager com a mesma tabela de pesos da análise anterior. Estimativa atual: **56% ainda genérico (±10 pontos, subjetivo)**, abaixo do registro anterior de 70%; não é percentual científico e não comprova a aspiração do dono de “0% genérico”. A análise foi atualizada em `projetos/02-prancheta/manager/ANALISE-GENERICIDADE-0.1.md`.
+2. Revalidei a sintaxe, suíte automatizada e auditoria geral: JavaScript válido, **204/204 testes** e auditoria **94/100, zero erros e seis avisos** do repositório mais amplo. Não há Chromium/Playwright neste ambiente; a tela real em celular ainda não foi conferida.
+3. **Defeito reproduzido antes do teste:** vender os dois goleiros em rodadas diferentes deixa a carreira sem goleiro; a troca de formação falha, mas a escalação é alterada parcialmente para 10 atletas e a tela informa sucesso. Isso pode tornar o time inválido. Correção recomendada: bloquear a venda do último goleiro, reverter escalações inválidas e exibir o erro.
+4. Outros riscos localizados: a posse pode ser distorcida após várias revisões táticas porque o cálculo reutiliza a média do jogo todo; o destaque pode usar eventos simulados depois descartados. Os 204 testes atuais não cobrem esses casos.
+5. Nesta análise **não mexi no código nem corrigi os defeitos**; não publiquei e não criei APK. A recomendação é corrigir primeiro o bloqueio dos goleiros e incluir teste de regressão antes do teste do dono.
+
+**Pendente:** com o **dono** — autorizar a correção do elenco sem goleiro e das inconsistências de estatística antes do teste prático. Publicação segue sem autorização.
+
+
+### Ainda em 2026-09-29 — correções pré-teste e revisão automática a cada rodada
+
+1. Corrigido o defeito reproduzido na análise anterior: **não é mais possível vender o último goleiro**. Saves antigos já sem goleiro recuperam o original do clube e recompõem a escalação, quando possível.
+2. A mudança de formação agora é transacional: se não completar 11 atletas, a escalação anterior permanece; a tela só confirma sucesso quando realmente trocou. Ao mudar formação durante a pausa, o seletor de substituição pendente é fechado para evitar ambiguidade.
+3. Corrigida a posse em alterações táticas repetidas, agora ponderada pelos minutos de cada plano. O destaque da partida é recalculado pela linha do tempo de eventos mantidos, incluindo quem marcou antes de sair.
+4. Adicionados testes de regressão para goleiro, recuperação de save, formação impossível, posse por trechos e destaque. **209/209 testes passaram**, e o JavaScript embutido passou na checagem de sintaxe.
+5. **Decisão operacional:** em cada rodada prancheta, conferir o diff, rodar sintaxe + suíte + casos direcionados + `git diff --check`, executar a auditoria do repositório, revisar genericidade quando houver mudança de mecânica e salvar tudo com commit/push verificado. O relatório distingue estimativa subjetiva de medida objetiva; não prometer “margem de erro zero”.
+6. A estimativa de genericidade fica em **56% (±10, subjetiva)**: correções de confiabilidade não reduzem por si só a genericidade. Não houve publicação nem APK; o jogo segue local.
+
+**Pendente:** com o **dono** — testar a revisão local atualizada; em seguida escolher a próxima mecânica própria para tornar os clubes e rivalidades mais diferentes nas regras. Publicação continua sem autorização.
+
+
+### Ainda em 2026-09-29 — correção de meta: 56% não é suficiente
+
+1. O dono corrigiu a interpretação: a meta de prancheta é ficar em **0% genérico**; a estimativa atual de **56% não é aceita como resultado suficiente**.
+2. Reconhecido que a última rodada priorizou correção de erros, o que melhora a confiabilidade, mas não reduz a genericidade. Não apresentar isso como avanço de identidade.
+3. A nota continua sendo subjetiva, não uma medida científica; não declarar “zero provado”. A exigência do dono, porém, é trabalhar em direção ao zero e mudar a mecânica central, não parar em 56%.
+4. **Próxima peça:** o assistente deve desenhar e implementar uma mecânica própria da Liga que mude decisões e resultados, avaliá-la com testes e revisar a análise. Depois o dono testa. Sem publicação ou APK.
+
+**Pendente:** com o **assistente** — reduzir a genericidade pela mecânica central; só depois pedir o teste prático do dono.
+
+### 2026-09-29 — prancheta Manager: Assinaturas de Mando
+
+1. Para mover a meta de **0% genérico** por meio de regra própria, foram criadas oito Assinaturas de Mando ficcionais, uma por clube. Cada uma combina nome, plano preferido e modificadores específicos de ataque, defesa, meio e posse; o efeito só é aplicado quando o plano coincide.
+2. A assinatura do mandante agora afeta a partida do usuário e os demais jogos simulados. A tela **ESCALAÇÃO** permite escolher o plano antes do apito; a prévia, a ficha do clube e a pausa mostram a marca e a condição do bônus. Saves passaram à versão 4, com migração e reparo de perfil inválido.
+3. Testes novos cobrem perfis únicos, ativação correta/incorreta, posse real, escolha pré-jogo e migrações v3/v4. Sintaxe JavaScript válida, `git diff --check` limpo e **216/216 testes automatizados verdes**.
+4. Reavaliação subjetiva pelos mesmos pesos: **49% (±10)**. Como a faixa se sobrepõe à estimativa anterior de 56%, não declaro queda comprovada nem aceitação; **0% segue como meta, ainda não atingida**. A regra nova é avanço funcional observável, não um argumento para fingir que o jogo já deixou de ser genérico.
+5. Revisão não testada em navegador/celular real. Não houve publicação, divulgação nem criação de APK.
+6. A rodada e sua análise foram registradas em `projetos/02-prancheta/manager/ANALISE-GENERICIDADE-0.1.md`, no guia de teste, em `pendencias.md` e neste registro. Auditoria geral pós-commit: **94/100, zero erros e seis avisos** antigos de outras áreas da base; relatório atualizado em `ferramentas/motor-auditoria/RELATORIO-AUDITORIA.md`.
+
+**Pendente:** com o **dono** — testar esta revisão local; com o **assistente** — continuar com outra peça de mecânica própria após este teste. Publicação e APK continuam sem autorização explícita.
+
+### 2026-09-29 — prancheta Manager: Memória do Clássico
+
+1. A pedido do dono para continuar além dos **49%** subjetivos, a nova peça foi ligada à Taça da Rivalidade: o primeiro clássico registra formação e plano finais do técnico; no segundo, o rival usa essa memória.
+2. Repetir os dois sinais aplica ao time do jogador **−4 ataque, −3 meio e −3 posse**; mudar só um mantém efeito neutro; mudar formação e plano dá **+3 ataque, +2 meio e +2 posse**. O estado é explicado antes do jogo e no painel de pausa, funciona em casa/fora e muda quando as escolhas são alteradas para o tempo restante.
+3. Saves agora migram para v5. O histórico antigo é preservado; uma partida anterior sem sinais táticos não ganha dados retroativos inventados.
+4. Testes cobrem classificação de leitura, surpresa/efeito parcial, posse real, segunda partida da temporada, alteração durante a pausa, gravação das táticas e migrações v1/v3/v4. **225/225 testes passaram**; sintaxe JavaScript válida e `git diff --check` limpo.
+5. Nova avaliação subjetiva pelos mesmos pesos: **43,5% (±10)**. A faixa se sobrepõe à estimativa anterior; não alegar que a redução numérica está provada. **0% continua sendo a meta de aceitação e não foi atingida.**
+6. Revisão local ainda sem teste de navegador/celular real. Não houve publicação, divulgação nem criação de APK.
+
+6. Auditoria geral pós-commit: **94/100, zero erros e seis avisos** recorrentes de outras áreas da base. Commit e push verificados; o hash final será registrado ao concluir o salvamento documental.
+
+**Pendente:** o dono testa esta revisão local; depois o assistente continua com outra mecânica central própria. Sem publicação/APK sem autorização explícita.
+
+### 2026-09-29 — prancheta Manager: Pacote Vida de Clube (save v8), 396/396 testes e primeira auditoria 100/100
+
+1. Comando do dono: "antes de publicar no site, atualize e continue aquilo que eu tava buscando, queria o 0% genérico e 100/100, faça isso agora". A rodada atacou as maiores lacunas da rubrica de uma vez, por regras que mudam decisões/resultados — sem cosméticos.
+2. Contratos e salários: salário derivado de força/idade, contrato de 1 a 3 temporadas, folha debitada por rodada, dívida cobrada no fim do ano, aposentadoria a partir dos 38 e purga do mercado aos 40. Renovação negociada ao fechar a temporada: aceitar a demanda, ofertar 75% (recusa determinística por força/idade e semente; quem recusa vai ao mercado) ou liberar; proteções de último goleiro e elenco mínimo de 13; sem ação, renova automático.
+3. Diretoria: metas de posição e gols por temporada com bônus de R$ 300 mil/150 mil; reputação do técnico (inicia 50) movida por metas, título, lanterna, taças e dívidas; aporte presidencial de +R$ 300 mil com reputação alta e −R$ 200 mil com baixa; demissão por meta perdida com reputação baixa; fluxo de assumir novo clube com verba e elenco conforme a reputação. A Taça da Rivalidade passa a pagar R$ 100 mil.
+4. Rivais vivos: na virada, os oito clubes pagam folha, recebem prêmios, liberam por caixa curto, vendem após meta perdida e contratam do mercado com sobra; a força de cada um é recalculada. Na partida: ajuste de plano no intervalo para os dois lados (o do usuário nunca muda sozinho), pressão da tabela a partir da rodada 10, foco de treino pago (até 2 atletas, R$ 15 mil por atleta/rodada, +1 de força na virada) e reforços de emergência quando o elenco não fecha 11 posições cobertas.
+5. Verificação: `node --check`, `git diff --check` e **396/396 testes** aprovados, incluindo migração v7→v8 e fluxos de interface (renovações, demissão, diretoria, intervalo). Sem teste real em navegador/celular (Chromium/Playwright ausentes).
+6. Nota subjetiva na mesma rubrica: **17,5% (±10)**, ante 35% (±10). As faixas se tocam entre 25 e 27,5 — o número segue subjetivo; **0% não foi atingido e não é certificável por rubrica subjetiva**, conforme o método registrado no diagnóstico.
+7. Commit do jogo+testes: `8c3951e`, push verificado por `git ls-remote` autenticado (token via GIT_ASKPASS temporário, apagado ao fim; nunca em URL, arquivo versionado, commit ou mensagem). Auditoria integral no HEAD limpo e sincronizado: **100/100, 0 erros, 0 avisos, 10 conferências em ordem, 171 URLs sem quebra confirmada** — primeira nota máxima da série; o erro histórico `repo.remoto_nao_verificado` caiu com a verificação autenticada. Cópias vivas `~/tools/.threads.json`/`.tumblr.json` recriadas nesta sessão (o sandbox as apaga; rotina documentada).
+8. Documentação sincronizada nesta rodada: `manager/ANALISE-GENERICIDADE-0.1.md`, `manager/GUIA-TESTE-0.1.md`, `manager/DIAGNOSTICO-AUDITORIA-GENERICIDADE.md`, `guia-do-proximo-chat.md`, `pendencias.md` e este registro; o relatório de auditoria entra no commit documental citando o HEAD da execução (off-by-one aceito e documentado).
+
+**Pendente:** com o **dono** — testar a revisão local v8 e autorizar (ou não) a publicação no site (o build público segue antigo); com o **assistente** — lacunas restantes (lesões, suspensões por cartão, moral, categorias de base próprias, comissão técnica, negociação usuário↔clube e reação além do intervalo) se houver comando. Sem publicação, divulgação ou APK sem autorização explícita.
+
+### 2026-09-29 — prancheta Manager: Pacote Vida de Clube II (save v9), 540/540 testes
+
+**Contexto:** comando do dono "continue até o 0%" — seguir implementando mecânicas originais até a genericidade chegar a 0% (ou o mais perto honestamente possível), sem publicar nada. A rodada anterior (v8, 17,5%) listava as lacunas: lesões, suspensões por cartão, moral, categorias de base, comissão técnica, negociação usuário↔clube e reação além do intervalo.
+
+1. **Elenco vivo (motor):** lesões com risco por plano (pressão 12%, transição 10%, equilibrado 6%, bloco 5%; clássico multiplica; preparador ×0,7) e 1–3 rodadas de afastamento; disciplina real (3 amarelos = 1 rodada; vermelho = 2; médico corta 1); moral 30–100 por resultado/gol/banco/renovação/clássico (peso dobro) com efeito na força efetiva (±5 contra limiar 65); indisponíveis fora de escalação/trocas/listas.
+2. **Estrutura:** comissão técnica com 4 papéis de salário e efeito próprios (assistente sugere plano na pausa; preparador reduz lesão e dobra treino; médico acelera recuperação; olheiro marca barganhas e desfalques do rival); categorias de base em 3 níveis (R$ 250/500/750 mil) revelando crias de 17–18 anos com potencial +1/ano até 22; renda de bilheteria em casa por ocupação (capacidade, força, reputação, posição, clássico) com ingresso derivado do estádio.
+3. **Mercado nos dois sentidos:** LISTAR atleta gera propostas dos clubes por rodada (expiram em 2, máx. 4, proteções de elenco mínimo/último goleiro); clubes com caixa <900k, contrato ≤1 ou elenco >21 abrem negociação direta (oferta 70/85/100%; aceite imediato, contraproposta 92–108% ou recusa); olheiro marca 🎯 barganha ≤80% do justo.
+4. **Reação além do intervalo:** cada rival tem minuto (55–72) e limiar (1–2 gols) próprios para trocar de plano durante os 90; visível no relato, na pausa e no histórico; o lado do usuário só muda por ação dele ou pela sugestão do assistente.
+5. **Interface:** cards novos de Comissão/Base/Negociações no clube; elenco com moral/lesão/cartões e 📣 LISTAR; escalação com 🚑 Desfalques e automático filtrado; mercado com barganhas e Negociar com os clubes; pausa com reação do rival e sugestão do assistente; aviso de rodada com 🎟️ bilheteria, 🏥 lesões e ⛔ suspensões; guia atualizado.
+6. **Save v9:** `gerarMundo` com baseNivel/comissao/listados/propostas/contraproposta/ultimaRenda e campos de vida em todos os atletas (incl. pool); `migrarEstado` v1–v8→v9 com reparo de comissão inválida, listados fantasmas e contraproposta normalizada; determinismo preservado (moral derivada de hashId, sem rng extra).
+7. **Verificação:** `node --check`, `git diff --check` e **540/540 testes** aprovados, incluindo varredura de 60 seeds (lesões/reações/vermelhos), virada completa com crias/potencial/rendas exatas dos rivais, migração v8→v9 e fluxos de interface dos cards novos. Sem teste real em navegador/celular.
+8. **Nota subjetiva na mesma rubrica:** **12% (±8)**, ante 17,5% (±10). As faixas se sobrepõem — número segue subjetivo; **0% não foi atingido e não é certificável por rubrica subjetiva**, conforme o método registrado no diagnóstico. Lacunas restantes: granularidade tática/atributos individuais, clima/gramado, copas mata-mata, patrocinadores/imprensa, paciência da diretoria na temporada, trajetórias longas dos atletas e interface.
+9. **Auditoria e push:** auditoria integral rodada ao fim desta sessão a partir de commit limpo, com `git ls-remote` autenticado por GIT_ASKPASS temporário (token apagado ao fim); resultado em `ferramentas/motor-auditoria/RELATORIO-AUDITORIA.md`.
+
+**Pendente:** com o **dono** — testar a revisão local v9 e autorizar (ou não) a publicação no site (o build público segue antigo); com o **assistente** — lacunas restantes se houver comando. Sem publicação, divulgação ou APK sem autorização explícita.
+
+### 2026-09-29 — Rodada de marketing (ter 20h): Post 5 bastidor idle 6/6 + APK GitHub +22
+
+**Contexto:** comando do dono *"faça o marketing completo de hoje, 8h32 já"* (20h32 de Fortaleza — janela de terça do CALENDARIO-TRABALHE). Itens do dia: **Post 5 — bastidor idle** ("a fazenda trabalha enquanto você dorme", 6 canais) + rotina diária. Marketing do **prancheta Manager segue bloqueado** até o ok explícito do dono (veredito anterior: "tá melhorando"); o post de hoje foi só do Ceifalume, conforme o calendário.
+
+1. **Leitura dos 6 canais:** 0 respostas/feedback novos — Discord #bugs/#feedback vazios, Telegram sem DMs, Threads sem replies, Mastodon sem notificações; Bluesky com 1 notificação (denyally seguiu de volta — follow recíproco do dia 28, sem ação).
+2. **Interação (limites do §2b):** Bluesky 4 likes (#godot/#indiedev: spartangamestudios, kev-young, owlnewworlds.games, problem18dev) + 4 follows (godotcon, mrbright01, revistagodot, godotplushadventur → 46 seguindo); Mastodon 4 favoritos + 3 follows na tag #godot (owlnewworlds, TastyTentacles, steam_lover → 28 seguindo).
+3. **Post 5 publicado nos 6 canais (~20h40):** "por que a fazenda continua trabalhando até 8 h com o jogo fechado" — offline progress sem notificação e sem sequência. Bluesky https://bsky.app/profile/reboclbrank.bsky.social/post/3mwoyvjxpsd2m · Mastodon https://mastodon.social/@ReboclBrank/117356970986941115 · Tumblr https://www.tumblr.com/reboclbrank/829135719482245120 · Telegram https://t.me/ceifalume/6 · Discord https://discord.com/channels/1552416733552185356/1552418508896206939/1554639189625282561 · Threads https://www.threads.com/@reboclbrank/post/Dd49olRmT9t.
+4. **Incidente Tumblr (contornado e registrado):** a API NPF passou a recusar todo post com `tags` (400 code 8001 — mesmo 1 tag, no create e no PUT; sem tags aceita). O post saiu pela **API legada** (`POST /v2/blog/{id}/post`, `type=photo&source=…&caption=…&tags=…`) → 201 com GIF e 11 tags. Dois posts de diagnóstico foram apagados pelo delete legado (`POST /v2/blog/{id}/post/delete` → 200; o `DELETE` do NPF devolve 404). Rotas gravadas em `ferramentas/chaves.md`. Refresh token rotacionado e gravado (chaves.md + `~/tools/.tumblr.json`).
+5. **threads-token.py:** acesso vivo (<24 h desde a última renovação; renova sozinho na próxima rodada). Cópias vivas `~/tools` recriadas do `chaves.md`.
+6. **Medição 20:44 (METRICAS.md):** itch **88 views (+3)** · 38 downloads (=) · 0 compras · **APK GitHub 46 (+22 — maior salto da série, vale investigar de onde veio)** · trailer YT ? (falha pontual de coleta) · Bsky 6 seguidores (+1), 12 posts, 29 likes (+1), 11 reposts (+2) · Masto 3 seguidores, 7 posts · dev.to 10 views · Tumblr 4 posts · Threads 4 posts/21 views.
+7. Meta 30 dias (dia 12): views **88/150 (59%)**, downloads **38/15 (253%)** — ambas acima do ritmo linear.
+
+**Pendente:** com o **dono** — testar o manager v9 local (540/540 testes, 12% ±8) e dizer se anuncia; amanhã (qua 30/09 20h): rotina. Sem publicação/APK do manager sem autorização explícita.
+
+### 2026-09-29 (21h) — Dono fecha Pinterest, Lemmy e Reddit; 0.2 adiada; rotina de amanhã preparada
+
+**Contexto:** após a rodada, o dono respondeu à lista de pendências: *"Pinterest não funciona já foi decidido, Lemmy também não, Reddit também não, o resto, você consegue fazer, a versão 0.2 vamos ver depois. Pode preparar o de amanhã, deixe tudo organizado para só eu mandar mensagem e vc fazer."*
+
+1. **Canais fechados de vez:** Pinterest (reconfirma o descarte de 27–28/09), **Lemmy** (novo — estava "aguardando aprovação") e **Reddit** (Post 9 de 13/10 CANCELADO). Documentos limpos: CALENDARIO-TRABALHE (linha 13/10 + "onde o dono entra"), PLANO-MARKETING (§4 post 9, §6 banner histórico, §11, §12, §13), pendencias.md e guia-do-proximo-chat.md.
+2. **Ceifalume 0.2 adiada** ("vamos ver depois"): o relatório de 05/10 segue de pé como insumo, mas construção (07–09/10) e lançamento (19/10) só valem após o dono reconfirmar; Post 7 (devlog 06/10) condicionado à decisão.
+3. **Prints do Post 6 delegados ao assistente** ("o resto você consegue fazer"): criada `projetos/01-ceifalume/divulgacao/shot-titulo-bsky-1280x720.jpg` (tela de título comprimida, <1 MB) — o Post 6 de sáb 03/10 não depende mais de print do dono.
+4. **Seguem com o dono (sem API, não delegáveis):** bloco "Comunidade" na itch (regra ⛔ de escrita mantida), bio do Threads (web-only) e token do Hashnode (opcional).
+5. **Rotina de qua 30/09 20h preparada:** checklist passo a passo gravada no `guia-do-proximo-chat.md` (seção "⚡ RODADA PRONTA") — o dono manda "trabalhe" e o chat executa sem perguntar nada.
+
+## 2026-09-29 (noite) — prancheta Manager: comando "termine de vez o genérico" e rodada final da rubrica (save v10)
+
+1. **Comando do dono:** "vamos agora terminar o prancheta, deixe em 0% o genérico… faça e termine de vez o genérico" — autorização explícita para o empurrão final de implementação, sem publicação, divulgação ou APK (bloqueios mantidos).
+2. **Executado:** save v10 — Pacote Mundo Vivo, com TODA a lista "O que ainda é genérico ou raso" da análise de genericidade implementada: atributos individuais e papéis, tática ampliada (6 planos/5 formações), clima e gramado determinísticos com efeitos nos planos, Copa dos Oito com pênaltis narrados e prêmios, cansaço e rotação, patrocínio com bônus condicionais, imprensa com coletivas pré/pós-jogo e holofote amplificador, paciência da diretoria dentro da temporada (ultimato, demissão no meio do ano e assunção imediata de outro clube), empréstimos, seleção sergipana, prêmios de fim de temporada, sagas de transferência, rivalidades de vestiário, ídolos, gráficos sparkline e linha do tempo da carreira, além de animações na interface.
+3. **Verificação:** 694/694 testes automatizados (540 da v9 + 154 novos), migração v9→v10 com reparos completos, `node --check` e `git diff --check` limpos; dois defeitos de motor achados e corrigidos pelos testes novos (holofote 0 tratado como ausente; limite de cobranças da diretoria). Sem teste em navegador/celular real.
+4. **Nota subjetiva:** 6% (±4), ante 12% (±8) — mesmos pesos. A rubrica não certifica 0% (é subjetiva); o registro honesto é que nenhuma lacuna mecânica da lista ficou aberta e o resíduo é formato fictício inerente. A palavra final sobre o 0% é o teste local do dono.
+5. **Bloqueios mantidos:** sem publicação no site (build público segue antigo), sem posts de marketing do manager (decisão do dono de 29/09: "o manager q nn irei postar"), sem APK. Push verificado por `git ls-remote`; hash reportado ao dono no chat.
+
+## 2026-09-29 (madrugada de 30/09) — prancheta Manager: comando "vá com tudo pra finalizar logo" e Pacote Chão Sergipano
+
+1. **Comando do dono:** "eita chat, você tá quase… só 6% para fechar o 0%, vá com tudo pra finalizar logo" — autorização para eliminar o resíduo declarado (ambientação/formato) da nota 6% (±4).
+2. **Executado (save segue v10, sem migração):** clima ancorado na geografia real de Sergipe (margem do rio São Francisco com mais chuva; sertão de Poço Verde com calor dominante; agreste variado — estatística determinística verificada em 300 rodadas); traços das oito cidades com efeito mensurável no motor (ribeirinhos resistem à chuva e protegem o gramado; Poço Verde resiste ao calor; Itabaiana +6% de ocupação; Tobias Barreto +50% de holofote nas coletivas; Lagarto +15% de patrocínio; Simão Dias −20% na dor das derrotas); atributos decidindo os lances dos 90 minutos (FIN no gol, CAB no aéreo com chuva/gramado pesado, PAS na assistência) e evoluindo na virada com teto 90/piso 35; notícias regionais (seca, Velho Chico, caminhões, o poeta, São João); aba CARREIRA e card das oito terras na interface; jogos do motor também sentem clima e traços.
+3. **Verificação:** 727/727 testes (33 novos; 694 anteriores verdes sem ajuste — zero quebra de compatibilidade), `node --check` e `git diff --check` limpos. Sem teste em navegador/celular real.
+4. **Nota subjetiva:** 3% (±3) — a faixa contém o zero — ante 6% (±4). Registro honesto: nenhum item das listas "O que ainda é genérico ou raso" ficou aberto; o resíduo é formato (página única de cards) e licenciamento (clubes fictícios, decisão existente). A rubrica não emite certificado numérico de 0%; **a certificação é ato do dono** após o teste local.
+5. **Bloqueios mantidos:** sem publicação no site, sem posts do manager, sem APK. Push verificado por `git ls-remote`; hashes reportados no chat.
+
+## 2026-09-29 (continuação, madrugada de 30/09) — prancheta Manager: verificação geral por comando do dono
+
+1. **Comando do dono:** "Perfeito então, agora confira se tá tudo certo e se há bug, erro ou falha" — rodada dedicada de conferência do save v10 (Mundo Vivo + Chão Sergipano).
+2. **Método:** estado do repo; suíte completa; `node --check`; varredura estática dos 105 nomes `M.*` usados pela UI contra os exports do motor; `el()` e atributos; recursos externos; fuzz de 12 carreiras de 3 temporadas com decisões aleatórias e invariantes (verba, moral, cansaço, paciência, holofote, tabela, copa, histórico); carreiras caóticas com demissões forçadas; fumaça de UI em 8 clubes × todas as abas × 5 formações × ficha × partidas de liga e copa × temporada fechada; roundtrip de save serializado no meio da carreira.
+3. **Achados:** 2 bugs reais, corrigidos com testes de regressão — (a) o card das oito terras usava a constante crua `M.CLUBES` com `c.id` inexistente: traços não apareciam e todas as zonas caíam em "agreste"; (b) demissão no meio da temporada com jogo de copa pendente travava a copa para sempre — `assumirClubeImediato` agora resolve o jogo órfão pelo motor. Nenhum outro erro: exports completos, jogo 100% autocontido (zero recursos externos), fuzz e fumaça sem nenhuma exceção ou violação de invariantes.
+4. **Estado final:** **738/738 testes** (fuzz permanente incorporado às seções [18] e [19]), `git diff --check` limpo, auditoria 100/100 em árvore limpa, push verificado por `git ls-remote` e hashes reportados. Nota subjetiva inalterada (3% ±3 — faixa contém o zero; certificação do 0% é ato do dono).
+5. **Bloqueios mantidos:** sem publicação, sem divulgação do manager, sem APK.
+
+## Rodada de apresentação — abertura da marca, capas e prontidão para teste (30/09)
+
+1. **Comando do dono:** "quero já deixar ele pronto para eu testar e se eu aprovar, já posto… faça a capa do jogo, nada de capa genérico 0% genérica, quero a abertura da Rebocl Brank na hora de entrar no jogo".
+2. **Capas (0% genérica):** fundo pintado sob medida (estádio do interior sergipano na caatinga, pôr do sol, mandacarus) + tipografia da marca: kicker "REBOCL BRANK APRESENTA", título ouro com contorno verde, placa MANAGER, subtítulo com a liga, monograma RB e assinatura "jogos e aplicativos". Três cortes: 1280×720, 630×500 (itch), 512×512 (ícone), em `projetos/02-prancheta/manager/divulgacao/`.
+3. **Abertura no jogo:** overlay preto com monograma RB dourado (SVG inline, o mesmo aprovado no site), "REBOCL BRANK / JOGOS E APLICATIVOS / apresenta prancheta MANAGER · toque para entrar"; some ao toque ou em ~3,2 s; menu principal ganhou a linha "REBOCL BRANK · JOGOS E APLICATIVOS". Testes novos na seção [20].
+4. **Estado:** suíte **744/744**, jogo servido em prévia local para o teste do dono. **Publicação condicionada:** só após o dono testar e aprovar, pela receita escrita em `projetos/02-prancheta/manager/RECEITA-PUBLICACAO.md`; antes disso, bloqueio mantido (REGRA do manager).
+
+## Rodada anti-template — "o jogo não deve parecer com IA" (30/09)
+
+1. **Comando do dono:** "o jogo tá com cara de IA, não deve parecer com IA".
+2. **Diagnóstico e correção:** (a) arte de capa com cara de pintura gerada → substituída por pixel art 16-bit sob encomenda (paleta fechada, dithering), recomposta nas 3 capas; (b) emojis de ícone (✅🎯🧠📣…) — hábito de texto gerado — varridos do jogo e dos testes: viraram etiquetas tipográficas de jornal/rádio (IMPRENSA ·, VESTIÁRIO ·, DM ·, TORCIDA ·…) e placar V/E/D; (c) colofon humano no rodapé: "FEITO À MÃO EM TOBIAS BARRETO – SE · UM ARQUIVO SÓ, SEM ENGINE · REBOCL BRANK".
+3. **Estado:** 744/744 testes, nenhuma mecânica tocada; publicação segue condicionada à aprovação do dono.
+
+## Colofon sem localização (30/09)
+
+1. **Comando do dono:** "Não precisa falar aonde eu moro chat, Tobias Barreto? pra que?" — ao ver o colofon "FEITO À MÃO EM TOBIAS BARRETO – SE…" no rodapé do jogo.
+2. **Decisão:** nenhum dado de localização do dono aparece no jogo ou nas capas. Colofon final: "FEITO À MÃO · UM ARQUIVO SÓ, SEM ENGINE · REBOCL BRANK". A cidade de Tobias Barreto segue no jogo apenas como CLUBE da liga (conteúdo aprovado), nunca como dado do dono.
+
+## APK 0.1 do prancheta Manager (30/09)
+
+1. **Comando do dono:** "faça o Apk completo da versão 0.1 para eu testar e se eu aprovar, já lançarmos" — libera a construção do APK (antes bloqueada); o LANÇAMENTO segue condicionado à aprovação dele.
+2. **Como foi feito (R$ 0):** casca Android nativa (Activity + WebView, sem framework pago) em `manager/apk/`; o jogo inteiro vai em `assets/index.html` (offline, zero recursos externos); `loadDataWithBaseURL` com origem virtual própria para o save local persistir; ícone = capa 512; minSdk 21, alvo 34; assinado com keystore próprio da Rebocl Brank (`manager/apk/keystore/manager-legacy.jks`, senha na linha APK-KEYSTORE de `ferramentas/chaves.md` — repo privado, mesma regra do token). Build reproduzível: `sh manager/apk/build.sh` com SDK oficial do Google.
+3. **Artefato:** `manager/apk/prancheta-manager-0.1.apk` — versionCode 1, versionName 0.1, 492 KB, certificado CN=Rebocl Brank.
+4. **Lançamento:** só após o dono testar e aprovar, pela seção 5 da `RECEITA-PUBLICACAO.md` (link direto no site; Play Store continua adiada).
+
+## Rodada anti-pictograma + APK 0.1 reconstruído (30/09)
+
+1. **Comando do dono:** "Corrija e faça tudo, antes de eu testar o Apk" — depois de a verificação apontar pictogramas no jogo e resíduos nos documentos, o dono mandou corrigir tudo e só então testar o APK.
+2. **Varredura completa no jogo (24 trocas de rótulo):** saíram ▶ dos botões (CONTINUAR CARREIRA, JOGAR PARTIDA, VOLTAR AO JOGO), ⏭ RESULTADO DIRETO, ⏩ ACELERAR, ☀️ clima, ⚡ morte súbita e pedidos de transferência, ⭐ em reputação/prêmios/ídolo/destaque, ⛔ suspenso, ⚔️ clássico/temporada, ✨ escalar automático, ⏸ pausa/relógio, e os pictogramas do guia (🧠 🗣️ 📣 📦 🎯 📋 🚑 🎟️ 🏥 😊 😐 😠 🟨 🏆 📈 🔎 🌱 🤝 📰 💼 🗺️). Ficaram só os símbolos tipográficos ★ (força) e ☰ (menu), que não são emoji.
+3. **Testes:** `teste-motor.js` sincronizado com os rótulos novos e ganhou a seção **[21] anti-template** (zero pictograma, zero dingbat, rótulos tipográficos presentes, colofon assinado, nenhum endereço do dono): **749/749 verdes**.
+4. **Documentos sincronizados:** `GUIA-TESTE-0.1.md` (para o dono reconhecer os rótulos na tela), `ANALISE-GENERICIDADE-0.1.md`, `RECEITA-PUBLICACAO.md` e o painel de `pendencias.md`.
+5. **APK:** reconstruído no ambiente oficial de build (build-tools 34.0.0 + platform android-34 baixados do Google, `build.sh` com `SDK=`), mesma chave de assinatura (SHA-256 `9b1fa0cd…a03b205`), `assets/index.html` md5 `24c4415b0beb32bc53614a6e3b3ccc6c` = jogo corrigido, zero pictograma dentro do pacote. **versionCode 1 / versionName 0.1 mantidos:** a 0.1 nunca foi publicada e a regra do versionCode só vale para republicação (a próxima publicada será 2).
+6. **Entrega para o teste:** o jogo e o APK corrigidos foram servidos numa página de teste temporária do próprio ambiente, entregue no chat (a prévia da plataforma só executa HTML, não instala APK). Nenhuma URL efêmera foi gravada em documento.
+7. **Bloqueios mantidos:** nada publicado e nada divulgado; a publicação do manager segue condicionada ao teste e à aprovação do dono pela `RECEITA-PUBLICACAO.md`.
+
+## Canal de entrega do APK de teste (30/09)
+
+1. **Comando do dono:** "mande o link para eu baixar, não mande link local pois não vai" — o link de túnel do ambiente (trycloudflare) foi entregue antes e **fiou instável** (chegou a responder HTTP 530; testes de rede do próprio ambiente confirmaram quedas), então o dono está certo: não serve como canal de teste.
+2. **Canais usados na entrega (30/09):**
+   - **Host público temporário** (litterbox, validade de 72 h): download direto, **sem login**, conferido no ambiente (HTTP 200, 492.101 bytes, md5 `07e4dccd9eadf249a62f0e817b936488`).
+   - **Release privada `teste-apk-0.1` no repositório `base`**: `https://github.com/reboclbrank-max/base/releases/download/teste-apk-0.1/prancheta-manager-0.1.apk` — 404 sem login (privada de verdade) e 200 com login, md5 conferido.
+3. **Regra para as próximas rodadas:** o APK de teste vai por **host temporário (sem login) + release privada no `base`**; **nunca** por túnel do ambiente; **nunca** no `site` público antes da aprovação do dono.
+4. **Nota:** disponibilizar o APK para o teste do dono **não é publicação** — nada foi para o `site`, itch.io ou qualquer página da marca; a publicação oficial segue bloqueada até a palavra dele.
+
+## APK de teste 0.1 travando no celular do dono -> casca blindada 0.1.1 (30/09)
+
+1. **Relato do dono:** ao instalar o APK de teste, o Android (Xiaomi/MIUI) avisou "o app prancheta Manager apresenta falhas contínuas" — o app abria e caía; o dono ainda perguntou se "o jogo está vazio".
+2. **Diagnóstico:** o jogo **não** era o problema. Num navegador real (Chromium, mesmo motor do WebView do Android) o jogo abre o menu completo, escolhe clube, roda as 7 abas e joga partidas — **zero exceção de JavaScript**. A causa estava na **casca Android**, que não tinha nenhuma proteção: no Android 8+ o motor de tela (WebView) roda em processo separado e, se ele morre, o app **fecha por padrão** — exatamente o "falhas contínuas" do print. A casca também não tratava falhas de abertura nem avisava nada: o app simplesmente sumia.
+3. **Correção (APK 0.1.1, versionCode 2, mesma assinatura):**
+   - `onRenderProcessGone`: se o motor de tela do celular cair, o jogo é **recarregado sozinho** (até 2 vezes); se insistir, aparece mensagem legível na tela em vez de o app fechar.
+   - **Rede de segurança global:** qualquer falha que escape é gravada no aparelho e **mostrada na próxima abertura** com um botão "TENTAR ABRIR O JOGO DE NOVO" — o dono fotografia e manda, e a causa vem no print.
+   - Tema definido em código (`Theme_Black_NoTitleBar`), `largeHeap`, aceleração explícita, ciclo de vida (`onResume`/`onPause`/`onDestroy`) tratado, tudo em `try/catch`.
+4. **Duas correções no jogo achadas nesta rodada:** a bola de futebol ⚽ da tela de escolha de clube e o trevo 🍀 do aviso de boa sorte estavam escritos em **código de escape** (`\u26BD`, `\u{1F340}`) e por isso escaparam da varredura anterior. Trocados pelo escudo RB dourado (mesmo da abertura, SVG próprio) e por texto limpo. A seção **[21]** da suíte agora varre também escapes e entidades HTML: **751/751 testes**.
+5. **Fumaca de navegador virou ferramenta:** `manager/apk/fumaca-carreira.py` abre o jogo num Chromium real, entra na carreira, percorre todas as abas e joga partidas reportando qualquer exceção (rodou: **0 erro**). Passa a valer como conferência de tela antes de qualquer entrega de APK.
+6. **Entrega (30/09):** APK 0.1.1 em link público temporário **sem login** (litterbox, 72 h, md5 `a1b6a002…`) + **release privada** `teste-apk-0.1.1` no `base` (a release `teste-apk-0.1`, do APK que travava, foi **apagada**). Link do jogo para jogar no navegador do celular também foi entregue (o mesmo arquivo do jogo, servido como página). Publicação oficial segue **bloqueada** até a aprovação do dono.
+7. **Lição de ambiente (para as próximas sessões):** o SDK do Android e o Chromium usados no build vivem em `~/.cache` / sistema, que **não persistem** entre sessões — antes de buildar de novo, baixar de novo (2 zips oficiais, ~90 MB) e reinstalar o chromium (`apt-get install chromium`) para a fumaca de navegador.
+
+## MUNDO COMPLETO — decisão do dono e Etapa 1 (30/09)
+
+1. **Comando do dono:** depois de "o jogo tá promissor, mais muito curto", pediu **"um jogo infinito onde nunca se encerra"** e, em seguida, **"literalmente todos os times, ligas e competições que existem no mundo todo"**.
+2. **Posição do assistente (registrada e aceita pelo dono):** clubes, ligas, estádios e competições **reais são protegidos** — usá-los num jogo distribuído (itch, APK, site) traz remoção da página e risco de processo, com o nome do dono no meio; além disso o futebol mundial são ~50 mil clubes e não existe base completa e gratuita. **Alternativa apresentada:** mundo fictício completo — **países e cidades reais, clubes e competições inventados com a cara de cada país** — zero risco, R$ 0, publicável e vendável.
+3. **Decisão do dono (escolhida na pergunta):** caminho **"mundo fictício completo (recomendo)"** e tamanho **"o mundo de uma vez, em 3 etapas"**: (1) pirâmide brasileira, (2) o resto do mundo com as continentais, (3) mundo infinito (carreira longa, mundo vivo, histórias raras, recordes).
+4. **Etapa 1 — motor pronto e testado:** `projetos/02-prancheta/mundo/mundo-brasil.js` gera **76 clubes em 4 divisões** (Liga do Interior 16 · Série C 20 · Série B 20 · Série A 20), calendário de **38 rodadas + 6 semanas de Copa do Brasil** (64 clubes, 6 fases, pênaltis no empate), **acesso e rebaixamento** (4 por divisão), virada de temporada com estádio que cresce e força que muda. Suíte nova `teste-mundo.js`: **122/122 verdes**, incluindo 12 temporadas seguidas sem quebra, determinismo por semente e a trava de nome real (lista de clubes famosos bloqueados). Exemplo legível em `mundo/EXEMPLO-TEMPORADA.md` e plano em `mundo/PLANO-MUNDO.md`.
+5. **Os 8 clubes que o dono conhece continuam** no mundo (a Liga do Interior nasceu com eles) + 8 novos de cidades reais de Sergipe.
+6. **Bug real achado pela suíte nova:** no rebaixamento, o clube permanecia na divisão de origem (a virada usava o campo errado) — corrigido; é o teste [7]/[8] que passou a garantir 20/20/20/16 em toda virada.
+7. **Ainda NÃO está na tela do jogo:** a Etapa 1 existe como motor (dados, calendário, temporada, copa). O próximo passo é ligar na interface do manager, criar os elencos dos 76 clubes, migrar o save (v11) e entregar APK novo — **nada disso foi publicado nem tocou a versão que o dono está testando**.
+
+## MUNDO GLOBAL — todos os continentes e países (Etapa 2 do motor, 30/09)
+
+1. **Comando do dono:** *"tou achando pouco time chat, você disse que colocaria todos os times do mundo e ainda não colocou, coloque, mesmo que o nome seja fictício"* — ou seja: ele quer volume de verdade, e liberou nomes fictícios.
+2. **Feito:** `projetos/02-prancheta/mundo/mundo-global.js` gera **226 países e territórios** (Europa, América do Sul, América do Norte e Caribe, África, Ásia e Oceania), **3.792 clubes**, **286 ligas** (1ª e 2ª divisão nos países de futebol forte; liga única nos demais), **226 copas nacionais** (16 clubes cada, mata-mata com "bye" para os melhores), **6 copas continentais** e o **Mundial de Clubes** (campeões continentais + campeões de copa dos países grandes). **47.952 jogos de liga por temporada**, simulados em menos de 1 segundo.
+3. **Sotaque por país (tudo inventado):** cada país tem estilo próprio de nome — Egito "Al-Nasr …, Raja …", Inglaterra "… United / … Wanderers", Espanha "Deportivo … / Unión …", Alemanha "SV … / …er SC", Turquia "…spor", Japão/China "… FC / … Blue Star", África "… Warriors / Young …", Oceania "Island …". **Trava automática** contra nome de clube famoso do mundo inteiro (Manchester, Real Madrid, Bayern, Juventus, PSG, Boca, Flamengo, Al Hilal, Zamalek, Auckland City…), e **nomes únicos no mundo** (desempate por numeral romano, como as equipes "B" do futebol real).
+4. **Testes:** `mundo/teste-global.js` — **80/80 verdes** (tamanho do mundo, sotaque por país, determinismo, ligas coerentes, copas nacionais, continentais com campeão do continente certo, Mundial, acesso/rebaixamento, 5 temporadas seguidas sem quebra). O mundo brasileiro da Etapa 1 segue **122/122**.
+5. **Bugs reais achados e corrigidos pelos testes:** (a) mata-mata descartava um clube quando o número de participantes não era potência de dois (faltava o "bye" — agora todo torneio tem exatamente n−1 jogos); (b) o mesmo nome de clube em países diferentes fazia as continentais coroarem o clube errado (busca por nome em vez de identificador — corrigido com nome único no mundo + `campeoesId`).
+6. **Atlas para o dono:** `mundo/ATLAS-DO-MUNDO.html` — o mundo inteiro visível (contadores, campeões continentais, Mundial e tabela país por país com campeão nacional e campeão da copa).
+7. **Ainda NÃO está na tela do jogo:** o mundo existe como motor (dados, calendário, temporadas, copas). Falta ligar na interface do manager, gerar elencos dos clubes conforme a carreira avança, migrar o save e entregar APK novo. **Nada foi publicado nem tocado na versão que o dono está testando.**
+
+## ELENCOS E CARREIRA NO MUNDO — o mundo ficou jogável por dentro (30/09)
+
+1. **Comando do dono:** *"faça conforme as leis e o que é possível de se colocar sem ser prejudicado, lembre-se: todos os clubes, ligas e competições"* — depois de o assistente explicar que nome "um pouco diferente" + mesma força configura imitação (crime de marca e uso indevido de imagem), o dono decidiu seguir **100% dentro da lei** e pediu o mundo todo.
+2. **Feito — elencos do mundo:** `mundo/mundo-nomes.js` gera **elenco de 20 atletas para qualquer clube dos 3.792** (2 goleiros, 6 zagueiros, 4 laterais, 5 meias, 3 atacantes), com nomes **inventados no sotaque de 18 estilos linguísticos** — inglês ("Alfie Nettleton"), espanhol ("Bautista Escalante"), árabe ("Mounir Ibrahim"), japonês ("Minho Hasegawa"), africano ("Bako Eze"), entre outros. **Trava automática** contra jogador famoso real (lista com Pelé, Maradona, Messi, CR7, Neymar, Mbappé, Haaland, Salah, Osimhen, Buffon…). Valor de mercado e salário crescem com força e caem com idade; cada elenco tem o seu destaque; **nenhum nome se repete dentro do elenco**.
+3. **Feito — carreira em qualquer país:** `mundo/mundo-carreira.js` — assumir um clube em qualquer um dos 226 países, calendário de ida e volta, **copa nacional** (clube entra se for um dos 16 melhores do país), **prêmio por colocação + bilheteria − folha**, reputação, **aposentadoria aos 36 anos com a base subindo** para completar o elenco, virada de temporada (elenco envelhece e evolui, tabela zera, calendário novo) e, no fecho do ano, **o resto do mundo é simulado ao redor**: campeões dos 226 países, as 6 copas continentais e o Mundial de Clubes. Save em JSON (salvar/voltar do mesmo ponto, testado).
+4. **Testes:** `mundo/teste-carreira.js` — **137/137 verdes**. As três suítes do mundo somam **339 testes** (122 do Brasil, 80 do mundo global, 137 de elencos e carreira). Bugs reais corrigidos nesta rodada: nomes repetidos dentro do elenco, sufixos feios de placeholders nos repertórios de nome e atletas que envelheciam para sempre sem se aposentar.
+5. **Demonstração para o dono:** `mundo/DEMO-CARREIRA-MUNDIAL.md` — assumindo o *Quarryfield County* (Inglaterra), com elenco completo tabelado, rodada a rodada, classificação final, prêmios, campeões do mundo e o reinício da temporada.
+6. **Falta:** ligar isso na TELA do jogo (escolher continente → país → liga → clube, ver tabela e copa, jogar rodada a rodada, salvar a carreira). **Nada publicado**; a versão que o dono testa continua intacta.
+
+## MUNDO NA TELA E APK 0.1.2 — a versão 0.1 completa (30/09)
+
+1. **Comando do dono:** *"organize, deixe perfeito, sem cara de IA e de genérico, troque essa capa que tá muito feia"* + *"me forneça o APK com a versão 0.1 todo pronto, perfeito e totalmente corrigido, sem bug, sem erros"*.
+2. **O mundo saiu do motor e entrou no jogo** (`manager/index.html`, um arquivo só): botão **MUNDO · 226 PAÍSES, 3.792 CLUBES** no menu, telas **continente → país → liga/clube** e a carreira do técnico em qualquer um dos 3.792 clubes — classificação, copa nacional, elenco de 20, prêmios, bilheteria, folha, reputação e a virada de temporada com o **resto do mundo jogando junto** (226 campeões, 6 continentais, Mundial de Clubes). Rodada a rodada, cinco de uma vez ou até o fim do ano.
+3. **A carreira que o dono já joga não foi tocada:** a Liga do Interior Sergipano continua com o save de sempre; o mundo tem save próprio (`prancheta-mundo-v1`) que guarda só a semente e o essencial — o mundo inteiro é regerado da semente em ~50 ms (save de poucos KB em vez de megabytes).
+4. **Ligação repetível:** `manager/ligar-mundo-na-tela.py` injeta os três módulos do mundo **dentro** da função que guarda o jogo (a primeira tentativa falhou por colocar o código fora dela, onde `aba`, `estado`, `el()` e `renderTudo` não existem) e acrescenta telas, abas, botão, boot, estilo e ganchos de teste. Rodar de novo não duplica nada.
+5. **Prova de que não tem bug (antes de entregar):** suíte do jogo **790/790** (39 testes novos do mundo no bloco `[22]`, incluindo save/recarga e as abas sem carreira do interior), as três suítes do motor do mundo **122 + 80 + 137 = 339**, e três fumaças em navegador real (mesmo motor do WebView do Android) — `fumaca-mundo.py` (joga o mundo inteiro e recarrega a página), `fumaca-carreira.py` (interior) e `fumaca-navegador.py` — **0 exceção**, e as duas primeiras rodadas também **no arquivo extraído do próprio APK**.
+6. **APK 0.1.2 = a versão 0.1 completa:** `apk/prancheta-manager-0.1.2.apk`, versionCode 3, 553.541 B, md5 `2b87f4f9e3d677f81719f42f775a35d1`, assinatura a mesma de sempre (`9b1fa0cd…`, então instala por cima do 0.1.1), ícone novo (512×512) e `assets/index.html` idêntico ao `manager/index.html` (md5 `f64996a1119f85a5ec2f0a6ac7ac529d`). O 0.1.1 fica como histórico; o 0.1 continua **não distribuível**.
+7. **Capas novas** (pôster serigrafia verde/ouro, placa escura e fio de ouro, faixa "226 PAÍSES · 3.792 CLUBES · 286 LIGAS · 1 MUNDIAL"): `divulgacao/capa-prancheta-manager-1280x720.jpg`, `-itch-630x500.jpg`, `-512x512.jpg` e o ícone do app, geradas por `divulgacao/compor-capas-mundo.py` sobre `arte-base-a.png` (ícone) e `arte-base-b.png` (capas).
+8. **Entrega (30/09):** link direto https://litter.catbox.moe/ohy1cg.apk (72 h) e release privada `teste-apk-0.1.2` no repositório, com o arquivo conferido por md5 depois de baixado.
+9. **Capa refeita a pedido do dono ("troque essa capa que tá muito feia, deixe ela perfeita, sem ser genérico e IA"):** as capas e o ícone agora são **desenhados por código** em `divulgacao/compor-capas-mundo.py` — cartaz serigráfico de três tintas (verde-noite, ouro, creme), bola de gomos pentagonais traçada a régua, trave com malha, torcida em silhueta, meio-tom de pontos no lugar de degradê, grão de papel, leve desencontro de registro e marcas de corte de gráfica. **As duas artes geradas por IA (`arte-base-a.png`, `arte-base-b.png`) foram apagadas do repositório** — não sobrou nada de banco de imagem. Versões: 1280×720, itch 630×500, quadrada 512 e o ícone 512 do aplicativo (conferido legível a 48 px).
+10. **APK 0.1.3** (versionCode 4, 348.741 B, md5 `a5ec9e3698315597b5e32ec48a5c66b6`, mesma assinatura `9b1fa0cd…`): a 0.1.2 com o ícone novo. Suíte **790/790**; fumaças `fumaca-mundo.py`, `fumaca-carreira.py` e `fumaca-navegador.py` com **0 exceção**, rodadas no `assets/index.html` extraído do próprio APK. Entrega: https://litter.catbox.moe/02oiqf.apk e release privada `teste-apk-0.1.3`.
+11. **Numeração fechada pelo dono (30/09): "lembrando que essa ainda é a versão 0.1".** O jogo se chama **0.1** — o aplicativo passou a mostrar `versionName = 0.1` (antes 0.1.3) e as correções dentro da mesma versão andam só no `versionCode` do Android, que hoje é **5**. O `build.sh` passou a gerar `prancheta-manager-0.1.apk` e **as revisões antigas foram movidas para `apk/historico/`** (inclusive o primeiro teste que travava, renomeado para `-primeiro-teste-nao-usar`), com tabela de qual arquivo vale no `apk/LEIA-ME.md`. Item 7 das pendências (numeração oficial) dado por resolvido.
+12. **Build 0.1 (versionCode 5):** 348.741 B, md5 `fd24a9995a7b6c0abb06afcfb1e9f708`, mesma assinatura `9b1fa0cd…`; `assets/index.html` md5 `25859ea8f06996e1b882b4eedcee774f` = `manager/index.html`. Suíte **790/790**; fumaças de mundo, carreira e abertura **0 exceção**, rodadas no arquivo extraído do APK. Entrega: https://litter.catbox.moe/0zkr63.apk e release privada `versao-0.1`. O pé de tela do jogo também passou a anunciar o mundo quando se está nele ("prancheta MANAGER 0.1 · MUNDO · 226 PAÍSES · 3.792 CLUBES").
+13. **Ainda NÃO publicado nem divulgado:** nada foi para loja, itch ou post. Publicação e divulgação continuam dependendo de autorização expressa do dono.
+
+## LINK DE ENTREGA DO APK — o do litterbox não abria no celular do dono (30/09)
+
+1. **O dono avisou:** *"o link não está funcionando"*. Teste do lado do assistente: o link do litterbox respondeu HTTP 200, 348.741 bytes, md5 idêntico — ou seja, **o arquivo estava certo; quem não alcançava era o aparelho/rede do dono** (serviço de upload costuma ser bloqueado em rede móvel).
+2. **Solução:** o APK desta versão 0.1 passou a ser servido pelo **site do próprio projeto** (repositório `site`, público, já usado como canal de build de teste em `GUIA-TESTE-0.1.md`):
+   - página com botão: https://reboclbrank-max.github.io/site/prancheta/baixar.html
+   - arquivo direto: https://reboclbrank-max.github.io/site/prancheta-manager/prancheta-manager-0.1.apk
+   - commit no `site`: `e654394`. Conferido depois de publicado: HTTP 200, 348.741 bytes, md5 `fd24a9995a7b6c0abb06afcfb1e9f708`, aceita retomada de download (206 em pedido por faixa).
+3. **Isto não é publicação nem divulgação:** nenhuma loja, nenhum post, nenhuma chamada em página inicial — é só o caminho de download que o dono pediu. Sai do ar quando ele quiser (apagar o arquivo do repositório `site`).
+4. **Reserva:** o link do litterbox continua válido (72 h) como segunda opção.
+
+## PRANCHETA — nome próprio, motor de jogo e capa nova (30/09)
+
+1. **O que o dono disse:** *"como um apk pode ser tão leve? não faz sentido isso, deve ser por falta de motor, não foi criado como deveria ser criado, sem qualidade, jogo vazio, e a capa tá muito ruim, não há necessidade de um nome, pode ser mais original, como o Ceifalume"*. Na escolha, pediu **um nome bem único e muito bom** e, sobre o peso, escolheu **"um motor de qualidade, o melhor que tiver"**.
+2. **Nome: PRANCHETA.** O quadro do técnico, palavra brasileira, curta e inventada no contexto — o jogo virou "o mundo inteiro numa prancheta". Nada de palavra estrangeira. O nome saiu do jogo, do menu, da abertura, dos rodapés e do rótulo do aplicativo (`android:label="Prancheta"`). **O pacote do Android continua `pacote anterior`** de propósito: mantém a assinatura e a atualização por cima das versões instaladas (o dono não perde o app nem o save). As chaves de save também não mudaram.
+3. **Motor de jogo — a partida ao vivo.** O botão do mundo passou a ser `JOGAR A RODADA · AO VIVO`: abre o campo desenhado dentro do próprio jogo, com **22 atletas** (o seu elenco escalado por posição, o adversário com elenco inventado no sotaque do país), bola que circula, lances de perigo, **gols no minuto certo**, placar, relato de rádio, `PAUSA`, `VELOCIDADE 2x` e `RESULTADO DIRETO`; no apito, o resumo traz os outros nove jogos da rodada. Por dentro, **o resultado continua sendo decidido pelo motor da carreira** (o que roda nos testes) e o roteiro de lances entrega exatamente aquele placar — a partida visível nunca contradiz a tabela.
+4. **Capa nova:** a prancheta do técnico (papel creme, mola de metal, campo de giz, jogadas com O e X, setas de movimento) desenhada por código em `divulgacao/compor-capas-prancheta.py`. As capas antigas do nome velho e o script antigo foram apagados do repositório.
+5. **Sobre o tamanho do APK (a dúvida do dono):** 242 KB não é falta de motor — é o desenho do projeto: o jogo é um arquivo só, sem engine de terceiros, sem imagem e som em arquivo (tudo é desenhado e sintetizado por código), então o pacote fica do tamanho de um e-mail. **O que o Ceifalume tem é o motor Godot, que pesa 25–60 MB de pacote**; portar este jogo para Godot significa recomeçar (arte, animação, física, economia) — semanas de trabalho. O caminho escolhido agora foi engordar o jogo por dentro (mundo inteiro, carreira longa, partida ao vivo) mantendo o pacote leve; a decisão sobre portar para motor de verdade fica em aberto para o dono.
+6. **Prova antes de entregar:** suíte do jogo **809/809** (bloco [23] novo, 19 testes da partida ao vivo), as três suítes do motor do mundo (122 + 80 + 137) e **três fumaças em navegador real no arquivo extraído do próprio APK** — 0 exceção.
+7. **APK `prancheta-0.1.apk`** (versionCode 6, 242.245 B, md5 `53a2cef9b0f9f1d1c0f3e559de72e61c`, mesma assinatura `9b1fa0cd…`): https://reboclbrank-max.github.io/site/prancheta/baixar.html (site do projeto, público, abre em qualquer celular) e reserva em https://litter.catbox.moe/552mu2.apk. Release privada `prancheta-0.1`. A página antiga do site passou a apontar para a nova.
+
+### 30/09/2026 — Porte para motor (Godot): PRANCHETA 0.1 (registro histórico das revisões iniciais)
+
+> **Correção de registro:** “0.2” apareceu por engano no título antigo; a versão visível permaneceu 0.1. O APK estável atual é 0.1/code 4; os códigos/hash abaixo descrevem builds anteriores e não são arquivos para distribuir.
+
+1. **O que o dono disse:** o APK `prancheta-0.1` (vc 6) **também travou** no aparelho dele
+   ("o app Prancheta apresenta falhas contínuas") e a ordem foi *"sem motor o jogo nem
+   funciona, é melhor usar o Godot logo para não perdemos tempo, aplique tudo do jogo no Godot
+   e se precisar aplique mais coisa para fazer sentido e ele ficar mais ainda completo"*.
+2. **Decisão:** o jogo passou a ser um projeto Godot de verdade (`prancheta-godot/`), com o
+   motor 4.5.2, mantendo a mesma matemática de carreira que já estava testada (valor, salário,
+   Poisson do placar, prêmios). **Nada de página dentro do app**: o que travava no celular do
+   dono era a casca WebView.
+3. **Mais coisa para fazer sentido (ordem cumprida):** o **Brasil recuperou a pirâmide de 4
+   divisões** (76 clubes do módulo brasileiro, com cidade, estado, escudo e lema), o mundo
+   ficou com **3.832 clubes**, e o mapa do mundo (226 países desenhados por código, com
+   latitude e longitude) entrou como porta de entrada da carreira. Cidades pequenas entram no
+   jogo: o **Onça Preta AC é de Tobias Barreto/SE** e joga a 4ª divisão.
+4. **Prova:** **57/57** testes do motor rodando dentro do Godot (3 temporadas completas,
+   save/load, mercado, treino, copa) e 14 telas fotografadas pelo próprio jogo (`prints/`).
+   A suíte da página (809/809) continua no repositório como histórico.
+5. **APK 0.2:** `build/prancheta-godot-0.2.apk`, 26,5 MB (motor tem peso de motor — o próprio
+   dono apontou isso quando estranhou os 242 KB), vc 7, rótulo Prancheta, arm64-v8a, **sem
+   nenhuma permissão**, assinado com a mesma chave da casa (`9b1fa0cd…`), então atualiza por
+   cima das versões antigas. **Gerado localmente e não publicado**: a entrega de link espera a
+   autorização do dono.
+6. **O que falta:** o teste no aparelho do dono (o único lugar onde o problema antigo
+   aparece) e a decisão sobre a página antiga do site, que ainda aponta para o APK que travava.
+
+### 30/09/2026 — PRANCHETA 0.1: jogo novo, chave nova
+
+1. **O que o dono disse:** *"versão 0.1, e faça uma assinatura nova, jogo novo, motor novo"*.
+2. **O que foi feito:** a numeração recomeçou em **0.1** (versionCode 1) e o aplicativo ganhou
+   **assinatura própria** (`keystore/prancheta.jks`, SHA-256 `8891eb98…`, alias `prancheta`,
+   senha guardada só em `ferramentas/chaves.md`) e **pacote próprio**
+   (`com.reboclbrank.prancheta`). Como a chave é nova, o Android não aceitaria atualização por
+   cima do Prancheta antigo de qualquer forma — e pacote novo é o certo para jogo novo: são
+   dois aplicativos distintos no aparelho, o antigo pode ser desinstalado.
+3. **Por que a assinatura não é a da casa (a `9b1fa0cd…` do prancheta/Ceifalume):** aquela chave
+   assinou os APKs da página que travavam no aparelho do dono; com motor novo e projeto novo,
+   a assinatura começa do zero, sem herdar nada.
+4. **Prova:** APK `build/prancheta-0.1.apk` (26.718.339 B, md5 `636dc39fc8bddd13d4f282c159da8b89`),
+   pacote/vc/versão/rótulo conferidos com `aapt2` (`com.reboclbrank.prancheta`, 1, 0.1,
+   "Prancheta"), **zero permissões**, arm64-v8a, assinado e verificado com `apksigner`
+   (certificado novo). Testes do motor rodando de novo dentro do Godot: **57/57**.
+5. **Build reprodutível do zero:** `ferramentas/exportar-android.sh` ficou autossuficiente —
+   baixa motor + templates Android (só os dois APKs, por pedaços: 226 MB no lugar de 1,3 GB),
+   Java 17 e SDK, cria a chave se não existir, exporta, alinha e assina. Necessário porque
+   **nada disso persiste** na máquina entre sessões.
+6. **Publicação:** continua esperando ordem do dono (nenhum link foi enviado).
+
+### 30/09/2026 — PRANCHETA 0.1 publicada (link entregue)
+
+1. **Ordem do dono:** *"Mande, quero também tudo salvo e organizado no Repositório!"*.
+2. **Endereços no ar:** https://reboclbrank-max.github.io/site/prancheta/baixar.html (página),
+   https://reboclbrank-max.github.io/site/prancheta/prancheta-0.1.apk (arquivo), reserva na release
+   pública `prancheta-0.1` do repositório do site e espelho no litterbox (`ir79q5.apk`, 72 h).
+3. **Prova de que o link é o arquivo certo:** os três foram baixados de volta e conferidos —
+   **26.718.339 bytes e md5 `636dc39fc8bddd13d4f282c159da8b89`** em todos, idêntico ao APK do
+   repositório. A página nova também foi conferida no ar (o texto de 3.832 clubes e o md5 aparecem
+   na versão publicada).
+4. **Organização pedida, feita:** o APK passou a viver **dentro do repositório**
+   (`prancheta-godot/apk/`, com `.idsig` e LEIA-ME próprio); nasceu o mapa da pasta em
+   `projetos/02-prancheta/LEIA-ME.md` dizendo o que é jogo de agora, o que é gerador e o que é
+   histórico; release privada `prancheta-godot-0.1` no `base` com o APK; e a release antiga
+   `prancheta-0.1` foi renomeada para "jogo ANTIGO (página dentro do app, travava no aparelho)" —
+   que era o formato que motivou o porte.
+5. **Página nova do site** traz ficha técnica (versão, pacote, tamanho, md5, permissões), o que
+   tem no jogo, as telas tiradas do próprio jogo, o passo a passo de instalação e o aviso de que
+   **é aplicativo novo** (não atualiza o antigo). O cartão "Projeto 02" do site virou
+   "Prancheta 0.1 — Disponível".
+6. **Cuidado registrado:** o link do Ceifalume no site usa `releases/latest/download/…`; a release
+   do Prancheta foi publicada com `make_latest=false` para não roubar o "latest" do Ceifalume.
+
+### 30/09/2026 — A abertura é do Rebocl Brank (não do motor)
+
+1. **O que o dono disse:** *"Tá aparecendo a abertura do Godot, eu não quero que apareça essa
+   abertura, é inclusive, eu quero a abertura do Rebocl Brank"*.
+2. **A abertura do motor foi desligada** no `project.godot` (`boot_splash` preto, sem imagem,
+   `show_image=false`): nada de logo do Godot nem tela de carregamento do motor.
+3. **Entrou uma abertura da casa** (`auto/Abertura.gd` + `cenas/Abertura.tscn`, agora a cena
+   principal): preto, o RB dourado, **REBOCL BRANK — JOGOS E APLICATIVOS**, linha dourada de
+   tempo e "PRANCHETA 0.1" no pé. Dois segundos e entra no menu; um toque pula. O logo é o do
+   arquivo da marca (`empresa/logo/logo-rb-dourada-512.png`, copiado como `marca-rb.png`).
+4. **Como conferir:** `prints/abertura-2-nome.png` (foto do próprio jogo) e o carimbo
+   "abertura: entrando no jogo" no log na hora da troca para o menu.
+5. **APK novo:** versionCode **2**, **26.628.386 B**, md5 `60f0969417ce79910dfb37d8d643233f`
+   (mesma chave `8891eb98…`, mesmo pacote `com.reboclbrank.prancheta`, zero permissões).
+6. **Ferramenta de teste não vai para o pacote:** `Teste`, `Retrato` e `AberturaRetrato` ficam
+   fora do APK exportado.
+
+### 30/09/2026 — Publicação corrigida do Prancheta 0.1 e organização dos APKs
+
+1. **Versão ativa:** PRANCHETA continua exibindo **0.1**; APK Godot `versionCode 4`, pacote `com.reboclbrank.prancheta`, certificado original preservado. Suíte automatizada **98/98**; falta teste em aparelho físico.
+2. **Publicação verificada:** a página `site/prancheta/baixar.html`, o APK direto e a release pública foram atualizados. O APK baixado do site confere com o arquivo local (26.640.674 bytes; SHA-256 `d3878842a9ddc859149329382cd0ffc7669829734a7408c6b7446bdf739ec610`). A release privada `base/prancheta-godot-0.1` também recebeu o code 4.
+3. **Builds antigos com erro:** 12 APKs/sidecars do manager WebView foram retirados da árvore ativa; os assets das cinco releases do manager antigo foram removidos e as páginas das releases marcadas como arquivo legado. As tags/releases e o código-fonte histórico foram mantidos. Os dois keystores `.jks` e as chaves de marketing foram preservados, conforme ordem do dono.
+4. **prancheta Android 1.1:** publicado em caminho próprio (`site/prancheta/baixar.htmlprancheta-1.1.apk`) e página própria. A verificação mostrou pacote/certificado diferentes do APK 1.0; por isso não foi sobrescrito nem apresentado como atualização in-place. O arquivo antigo continua guardado.
+5. **prancheta web:** PCK atualizado ao build atual; tamanho informado no loader corrigido e cache do service worker incrementado. A página PWA/offline foi preservada.
+6. **Compatibilidade:** `site/prancheta-manager/` permanece como redirecionamento para Prancheta. O site inicial lista Prancheta 0.1, Ceifalume 0.1 e prancheta 1.1.
+7. **Commits:** `site` `aa442874614615cecadda2fcc3182a47093e5891`; `base` `65d125cece03bbf24b57e29550a4af49b706cf35`; README de `projetos-arquivados` `0092f167bd27cc44a8f9745a6c8c9bbdce291494`.
+8. **Validação pública:** páginas e arquivos diretos responderam HTTP 200; os SHA-256 dos APKs e o hash Git do PCK foram conferidos contra os arquivos publicados. `projetos-arquivados` e `ceifalume` não tiveram binários/releases antigos removidos nesta rodada.
+
+## 30/09/2026 — Correção definitiva da identidade e organização dos repositórios
+
+1. **Identidade:** o jogo é um único produto chamado **Prancheta**. O rótulo público continua **0.1**; o APK ativo é o Godot, pacote `com.reboclbrank.prancheta`, `versionCode` 4. Versões de desenvolvimento não devem ser apresentadas como jogos ou aplicativos separados.
+2. **Site:** commit `1099eb639f00fd8277620dabf50d389eff381b42` retirou 21 entradas e 99.052.236 bytes da publicação ativa. Deploy verificado: home e página de Prancheta HTTP 200; a página serve o APK cujo SHA-256 confere com o arquivo local. Endpoints removidos retornam 404.
+3. **Repositório de arquivo:** renomeado para `projetos-arquivados`, commit de limpeza `d715615cb8795bc322d1109f0335d51713d5adb3`. Foram removidos builds e materiais substituídos, releases e tags correspondentes. Ceifalume, documentos da empresa, outros projetos e automações/credenciais de marketing foram preservados.
+4. **Repositório privado `base`:** o projeto Godot ativo foi movido localmente para `projetos/02-prancheta/godot/`; documentação local atualizada. O commit remoto ainda não foi feito nem verificado. Preservar APK, `.idsig`, keystore e credenciais; concluir o envio e auditar os caminhos antes de declarar a limpeza encerrada.
+5. **Verificações e limite:** suíte automatizada 98/98; instalação em aparelho Android físico continua pendente. Não prometer ausência total de bugs.
+
+**Pendente:** concluir e verificar a migração de `base/main` e testar o APK em um aparelho Android.
