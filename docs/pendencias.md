@@ -1,26 +1,29 @@
-# Pendências ativas — 30/09/2026
+# Pendências ativas — 02/10/2026
 
-## Prancheta 0.1
+## Ceifalume — próxima rodada de divulgação
 
-- [x] Nome definitivo e identidade única: Prancheta.
-- [x] Versão visível mantida em 0.1; APK ativo `versionCode 4`.
-- [x] Testes automatizados: 98/98; importação e inicialização headless verificadas.
-- [x] Publicação atual conferida: https://reboclbrank-max.github.io/site/prancheta/baixar.html — home, página e APK responderam corretamente; SHA-256 conferido.
-- [ ] Instalar e testar em aparelho Android físico; nenhum dispositivo ADB estava conectado durante a última verificação.
-- [x] Migração para `projetos/02-prancheta/godot/` enviada em `base/main` (`baa1bd7`); auditoria da árvore atual sem caminhos ou textos com a marca anterior.
+- [x] Próxima publicação confirmada pelo calendário: Post 6 — #ScreenshotSaturday 2, pedir feedback (“o que plantariam primeiro?”), material shot + GIF prontos; sábado 03/10 às 17h (Fortaleza). Nenhum post principal hoje.
+- [x] Verificar em privado e canal por canal as credenciais: Bluesky, Mastodon, Threads, Discord, Telegram e Tumblr válidos; dev.to medição autenticada. Valores preservados e não exibidos. Limite: endpoint de menções do Threads devolveu HTTP 500; replies consultadas sem resultado.
+- [x] Rotina de 01/10 (04h03, antecipada a pedido do dono): 0 novidades nos 6 canais; interação do dia feita (Bsky 4 likes + 3 follows; Masto 3 favs + 2 follows); medição em `marketing/METRICAS.md`; diário em `marketing/PLANO-MARKETING.md` §9.
+- [x] Rodada da noite de 01/10 (22h39, pedido do dono "faça o marketing de hoje"): 0 feedback novo nos 6 canais; respostas do Threads lidas por rota nova (`/{post-id}/replies`, 0 nos 3 posts — `/mentions` virou 403); 3 seguidores novos no Bsky **fora do nicho** (não retribuídos) e 1 no Masto (perfil de apelo — não retribuído); interação do dia **não repetida** (limite 3–5/dia já usado às 04h03); medição de fechamento: itch 91/38/0 · APK GitHub 63 · Bsky 10 seg · Masto 4 seg; links públicos conferidos 7/7; medidor do Threads corrigido. **Sem post** — o próximo é o Post 6 (sáb 03/10 17h).
+- [ ] Em 03/10, publicar somente nos canais cujo acesso esteja confirmado e conferir os links depois.
 
-## Organização dos repositórios
+## Prancheta
 
-- [x] Site público limpo e deploy conferido. A home lista Ceifalume 0.1, Prancheta 0.1 e Projeto 03 — Em breve.
-- [x] Repositório de arquivo renomeado para `projetos-arquivados`; materiais não relacionados e credenciais de marketing preservados; builds substituídos e respectivas releases/tags removidos da árvore ativa.
-- [x] Árvore e tags de `base/main` conferidas após a reescrita; APK, `.idsig`, keystores e credenciais preservados.
-- [ ] Manter a documentação de Prancheta alinhada com a publicação e registrar qualquer nova correção.
+- Guardados apenas o **nome** e a **capa** (`projetos/02-prancheta/marca/`), por escolha do dono, para o próximo jogo.
+- Do jogo anterior **não existe mais nada** (arquivos, chaves, site e histórico — apagados por ordem do dono em 02/10/2026). Não retomar, não citar, não reaproveitar.
+- **Próximo jogo: por definir com o dono** — a direção vem dele, do zero.
 
-## Outros projetos
+## Repositórios
 
-- Ceifalume e documentos da empresa permanecem preservados. Antes de alterar qualquer conteúdo deles, conferir os respectivos documentos de progresso e decisões.
-- Não apagar, exibir nem rotacionar credenciais, keystores, APKs ativos ou sidecars `.idsig`.
+- [x] `site/main` limpo, histórico reescrito e deploy validado.
+- [x] `base/main` organizado; arquivos históricos recuperados sem alterar os artefatos ativos.
+- [x] Repositório neutro `projetos-arquivados` mantém Ceifalume, empresa, outros projetos e documentos gerais.
+- [x] Varredura das branches e históricos alcançáveis sem referências textuais/caminhos ao nome anterior. O GitHub ainda pode atender hashes antigos sem refs; essa limitação foi aceita.
 
-## Regra de publicação
+## Regras permanentes
 
-Publicar somente após verificar o conteúdo e os links públicos. Manter o rótulo visível 0.1; qualquer correção Android futura incrementa apenas o `versionCode`. Registrar falhas e limites de teste com clareza.
+- Preservar chaves, tokens, APK ativo, `.idsig` e keystores. Não expor, apagar ou rotacionar credenciais sem autorização.
+- Versão de produto: builds de QA são etapas da mesma versão, não versões novas. O metadado Android é apenas técnico.
+- Não tratar protótipos ou materiais históricos como produtos separados.
+- Verificar links antes de afirmar que algo foi publicado e relatar limites de teste com clareza.

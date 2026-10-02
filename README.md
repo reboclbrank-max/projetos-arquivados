@@ -5,15 +5,15 @@ Este repositório conserva materiais de apoio e histórico de projetos. Ele não
 ## Conteúdo mantido
 
 - `projetos/01-ceifalume/`: materiais e documentação do Ceifalume.
-- `projetos/02-proximo-jogo/`: notas do próximo projeto.
+- `projetos/02-proximo-jogo/`: conceitos de reserva para jogos futuros.
 - `empresa/`: identidade e planejamento da Rebocl Brank.
 - `ferramentas/`: utilitários compartilhados; credenciais e automações de marketing mantidas conforme instrução do dono.
 
-## Aplicativo ativo
+## Jogo ativo
 
-O jogo atual se chama **Prancheta**. Página pública: https://reboclbrank-max.github.io/site/prancheta/baixar.html. A fonte e o APK assinado ficam no repositório privado `base`; não publique keystores neste arquivo.
+O jogo ativo é o **Ceifalume** (0.1, no ar). O material do jogo ativo e a fonte ficam no repositório privado `base`; não publique keystores neste arquivo.
 
-Builds e pastas de versões substituídas foram retiradas deste repositório. Nenhum arquivo dos projetos Ceifalume/empresa foi apagado nesta reorganização.
+Builds e pastas de versões substituídas foram retiradas deste repositório.
 
 ## Documentos de referência
 

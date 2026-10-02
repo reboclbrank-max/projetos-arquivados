@@ -46,7 +46,7 @@ mesmo dia, o segundo "trabalhe" só faz o que ficou faltando.
 | 02/10 | sex | 20h | rotina |
 | 03/10 | sáb | **17h** | **Post 6 — #ScreenshotSaturday 2** |
 | 04/10 | dom | 20h | rotina + relatório da semana |
-| **05/10** | **seg** | 20h | **Relatório "o que ouvimos" + escopo recomendado da 0.2** (+ confirmar o jogo 2 escolhido em `projetos/02-proximo-jogo/CONCEITOS.md`, se ainda não escolhido) → dono decide (responde na mesma conversa ou no dia seguinte) |
+| **05/10** | **seg** | 20h | **Relatório "o que ouvimos" + escopo recomendado da 0.2** (+ confirmar o **jogo 2 — em aberto, a definir com o dono**) → dono decide (responde na mesma conversa ou no dia seguinte) |
 | 06/10 | ter | **20h** | **Post 7 — devlog "o que vem na 0.2"** (+ artigo dev.to) — com o escopo decidido |
 | 07–09/10 | qua–sex | 20h | rotina + **construção da 0.2** (assistente pede ao dono o clone do repositório `ceifalume` na primeira vez) |
 | 10/10 | sáb | **17h** | **Post 8** — GIF da vitrine da 0.2 em andamento |
@@ -56,9 +56,9 @@ mesmo dia, o segundo "trabalhe" só faz o que ficou faltando.
 | 17/10 | sáb | **17h** | Post 10 — "0.2 chega terça" |
 | 18/10 | dom | 20h | rotina + relatório |
 | **19/10** | **seg** | 20h | **Lançamento 0.2**: itch (dono sobe o zip/APK, assistente guia) + GitHub Release + newsletter + 6 canais |
-| 20/10 | ter | **20h** | Post pós-lançamento + **abertura do **prancheta MANAGER** (estilo Brasfoot, aprovado 28/09)** (semana 1 do `projetos/02-prancheta/cronograma-manager.md`) |
-| 20/10 → 23/11 | todos | idem | rotina de marketing (2 jogos) + bloco de produção do futebol; posts revezam Ceifalume/bastidores do futebol (máx 3/sem) |
-| **24/11** | **ter** | **20h** | **Lançamento prancheta Manager 0.1** (itch + Pages + APK + 6 canais + newsletter) |
+| 20/10 | ter | **20h** | Post pós-lançamento + ~~abertura do jogo 2~~ **CANCELADO — o jogo anterior foi apagado pelo dono (02/10/2026)** |
+| 20/10 → 23/11 | todos | idem | rotina de marketing (só Ceifalume) + bloco de produção do **próximo jogo (a definir com o dono)** |
+| **24/11** | **ter** | **20h** | ~~Lançamento do jogo 2~~ **CANCELADO em 02/10/2026 (o jogo foi apagado pelo dono)** |
 
 ## Onde o dono entra além de "trabalhe"
 - Responder às decisões de 05/10 (escopo da 0.2 e escolha do jogo 2) — **0.2 adiada pelo dono em 29/09 ("vamos ver depois")**: o relatório de 05/10 segue de pé como insumo; construção (07–09/10) e lançamento (19/10) só valem após ele reconfirmar.

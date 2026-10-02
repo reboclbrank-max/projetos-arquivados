@@ -46,9 +46,6 @@
   "à luz da lanterna" para o perfil ficar coeso.
 - "Toque Rápido" (rascunho antigo no perfil itch) continua arquivado — não conta como jogo 2 (decisão de 17/09).
 
-## Atualização 23/09 — exceção consciente: jogo 2 é MÉDIO (4–5 semanas)
-O dono escolheu como jogo 2 o **prancheta** (nome decidido em 24/09/2026; antes "Rumo ao Estrelato") (futebol jogado em campo, 2D de cima, controla só o seu jogador).
-A 0.1 completa (11×11) seria de 8–10 semanas; adotado o **plano B**: 0.1 em **5×5** (4–5 semanas, 24/11), depois
-7×7 e 11×11 por versões. A regra "pequeno e crescendo por versões" é mantida no espírito; o teto de 3 semanas foi
-dobrado conscientemente pelo dono. Conceitos pequenos (Vaga-Lume, Brotos da Lua, Fogueira) ficam de reserva para o
-jogo 3. Ver `projetos/02-prancheta/`.
+## Jogo 2 — em aberto (02/10/2026)
+
+O jogo 2 está **por definir com o dono**: a direção vem dele, do zero. Valem os critérios acima e, como reserva, os conceitos pequenos de `projetos/02-proximo-jogo/CONCEITOS.md`.

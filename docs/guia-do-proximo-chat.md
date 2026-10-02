@@ -1,35 +1,36 @@
-# Guia do próximo chat — Prancheta e organização dos repositórios
+# Guia do próximo chat — Ceifalume, empresa e repositórios
 
-Atualizado em 30/09/2026. Falar em português do Brasil.
+Atualizado em 02/10/2026 (Prancheta apagado por ordem do dono: ficaram **só o nome e a capa**). Falar em português do Brasil.
 
-## Identidade definitiva
+## Marketing agora (Ceifalume)
 
-- **Prancheta é o único jogo e a única marca do produto.** O nome visível do app permanece **Prancheta 0.1**.
-- Não apresentar versões antigas, protótipos ou publicações retiradas como jogos separados.
-- Não criar rótulo visível 0.2. Correções Android avançam somente o `versionCode` oculto.
-- Pacote ativo: `com.reboclbrank.prancheta`; assinatura, keystore e `.idsig` devem ser preservados.
+- Última rotina cumprida em 01/10 (duas passadas: 04h03 e 22h39): **0 feedback novo** nos 6 canais, interação do dia feita, medição de fechamento (itch 91 views/38 downloads · APK GitHub 63 · Bsky 10 seg · Masto 4 seg), links públicos conferidos 7/7. Registro em `empresa/registro-de-decisoes.md`, `pendencias.md`, `marketing/PLANO-MARKETING.md` (§9) e `marketing/METRICAS.md`.
+- Próximo post: **Post 6 — #ScreenshotSaturday 2, sábado 03/10/2026 às 17h** (Fortaleza). Não publicar fora do calendário.
+- Relatório semanal: domingo **04/10**. Em **05/10**, relatório "o que ouvimos" + escopo recomendado da 0.2 — **0.2 adiada pelo dono em 29/09 ("vamos ver depois")**: só volta com reconfirmação dele.
+- Não exibir valores de credenciais; conferir cada canal em privado antes de publicar.
 
-## Estado confirmado
+## Prancheta — só o nome e a capa
 
-- Projeto Godot ativo local: `projetos/02-prancheta/godot/`.
-- APK ativo: `godot/apk/prancheta-0.1.apk`, `versionCode 4`, 26.640.674 bytes.
-- SHA-256: `d3878842a9ddc859149329382cd0ffc7669829734a7408c6b7446bdf739ec610`.
-- Suíte automatizada: 98/98. Importação e inicialização headless verificadas.
-- Falta instalar e testar em aparelho Android físico; ADB não estava conectado.
-- Página pública: https://reboclbrank-max.github.io/site/prancheta/baixar.html.
-- Deploy conferido: home e página retornam HTTP 200; o download confere com o arquivo local.
-- A home lista Ceifalume 0.1, Prancheta 0.1 e Projeto 03 — Em breve.
+- Do jogo anterior **não existe mais nada em lugar nenhum** — nem arquivo, nem cópia, nem chave, nem página, nem histórico de repositório. Ordem expressa do dono (02/10/2026): **não retomar, não citar e não reaproveitar nada dele**.
+- Ficaram **o nome Prancheta e a capa** (`projetos/02-prancheta/marca/`), por escolha do dono, para o próximo jogo.
+- **Nada está definido sobre o próximo jogo.** A direção vem do dono; começar do zero. Avançar com calma, um passo por vez, com ele jogando cada passo.
 
-## Repositórios
+## Estado confirmado (Ceifalume 0.1)
 
-- `site/main`: histórico reescrito; head `39fd559ffa409417233b9b00aff54ab7721a0fb4`. Árvore, tags, deploy e APK ativo conferidos.
-- Repositório neutro `projetos-arquivados`: renomeado e com histórico reescrito; head `5c94008087efdf6f4edf3a0c537cde67ee414611`. Ceifalume, empresa, outros projetos e credenciais de marketing preservados.
-- `base/main`: migração concluída e verificada no commit `baa1bd7b8b636b414789c4a3527824e3ea06fbe9`; árvore ativa sem referências à marca anterior. APK, `.idsig`, keystores e credenciais preservados.
+- itch https://reboclbrank-max.itch.io/ceifalume · site https://reboclbrank-max.github.io/site/ · trailer https://youtu.be/tB449xupDzY · APK na release `v0.1`.
+- 6 saídas: Bluesky, Mastodon, Tumblr, Telegram, Discord e Threads.
+- Medição de 01/10 22h39: itch 91/38/0 · GH APK 63 · YouTube 6 · Bsky 10 · Masto 4 · Threads 4 posts/27 views.
 
-## Cuidados obrigatórios
+## Repositórios e recuperação
 
-- Não exibir, copiar, apagar ou rotacionar chaves e tokens. Não alterar valores de credenciais.
-- Preservar o APK, o `.idsig`, o keystore ativo e quaisquer outras chaves de assinatura.
-- Antes de qualquer atualização, conferir pacote e certificado; manter o mesmo pacote/assinatura do build ativo.
-- Verificar links públicos após publicar. Comunicar falhas e limites; não prometer ausência total de bugs.
-- Não apagar arquivos de Ceifalume, da empresa ou de outros projetos durante a reorganização de Prancheta.
+- `site/main`: histórico reescrito; head `39fd559ffa409417233b9b00aff54ab7721a0fb4`.
+- `base/main`: organização geral (histórico reescrito em 02/10/2026 para não guardar o jogo anterior).
+- `projetos-arquivados`: repositório neutro; Ceifalume, empresa e documentos gerais preservados.
+- Limitação aceita: o GitHub ainda pode atender hashes antigos sem refs.
+
+## Cuidados
+
+- Não copiar, exibir, apagar ou rotacionar credenciais sem autorização.
+- Antes de publicar Ceifalume, conferir cada canal e link, sem presumir acesso total.
+- Comunicar limites de teste; não prometer ausência total de bugs.
+- Regra fixa nº 1: toda conversa que muda algo termina com **commit + push verificado** e o hash informado ao dono.
