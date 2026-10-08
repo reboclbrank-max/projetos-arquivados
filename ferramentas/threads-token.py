@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHAVES = os.path.join(RAIZ, "ferramentas", "chaves.md")
 COPIA = os.path.expanduser("~/tools/.threads.json")
-SECRET = "23c98b40fd9b8f5657dc197915e69e51"
+SECRET = "REMOVIDO-DO-CODIGO-08-10-2026 (rotacione o app secret no portal Meta do app 1063985229878724)"
 
 
 def url(rota):
